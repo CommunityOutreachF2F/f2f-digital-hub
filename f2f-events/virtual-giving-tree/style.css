@@ -197,32 +197,32 @@ body {
 
 /* gold $5 – move right a LOT */
 .vgt-ornament[data-id="warm-wishes"] {
-  top: 28%;
-  left: 60%;
+  top: 30%;
+  left: 68%;
 }
 
 /* blue $10 – down a bit + left a bit wider */
 .vgt-ornament[data-id="cozy-comfort"] {
-  top: 42%;
-  left: 32%;
+  top: 47%;
+  left: 28%;
 }
 
 /* orange $25 – wider to the right */
 .vgt-ornament[data-id="fresh-start-kit"] {
-  top: 46%;
-  left: 67%;
+  top: 50%;
+  left: 75%;
 }
 
 /* red $50 – farther left + slightly lower */
 .vgt-ornament[data-id="hot-meal-hope"] {
-  top: 57%;
-  left: 30%;
+  top: 62%;
+  left: 26%;
 }
 
 /* green $100 – farther right + lower */
 .vgt-ornament[data-id="bridge-stability"] {
-  top: 63%;
-  left: 70%;
+  top: 67%;
+  left: 78%;
 }
 
 /* purple $250 – stays where you like it */
