@@ -184,50 +184,50 @@ body {
 /* active ornament state (on click) */
 .vgt-ornament.vgt-active {
   transform: translate(-50%, -50%) scale(1.08);
-  box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.9);
+  box-shadow: 0 0 14px rgba(0, 0, 0, 0.45); /* soft glow, no white ring */
 }
 
 /* ========== ORNAMENT POSITIONS (based on your sketch) ========== */
 
-/* pink ♥ – upper left branch, ON the tree */
+/* pink ♥ – upper left branch, on the tree */
 .vgt-ornament[data-id="give-heart"] {
-  top: 18%;
-  left: 38%;
+  top: 24%;
+  left: 33%;
 }
 
-/* $5 – upper center-right */
+/* $5 – upper right-ish */
 .vgt-ornament[data-id="warm-wishes"] {
-  top: 26%;
-  left: 54%;
+  top: 30%;
+  left: 55%;
 }
 
 /* $10 – upper-mid left */
 .vgt-ornament[data-id="cozy-comfort"] {
-  top: 38%;
-  left: 40%;
+  top: 40%;
+  left: 36%;
 }
 
 /* $25 – upper-mid right */
 .vgt-ornament[data-id="fresh-start-kit"] {
-  top: 40%;
-  left: 63%;
+  top: 44%;
+  left: 62%;
 }
 
 /* $50 – mid-left */
 .vgt-ornament[data-id="hot-meal-hope"] {
-  top: 52%;
-  left: 38%;
+  top: 56%;
+  left: 34%;
 }
 
-/* $100 – mid-right, pulled further right */
+/* $100 – mid-right, pushed further out */
 .vgt-ornament[data-id="bridge-stability"] {
-  top: 54%;
+  top: 60%;
   left: 66%;
 }
 
 /* $250 – lower center */
 .vgt-ornament[data-id="safe-housing"] {
-  top: 71%;
+  top: 74%;
   left: 47%;
 }
 
@@ -318,4 +318,8 @@ body {
   .vgt-page {
     padding: 20px 10px 18px;
   }
+}
+/* TEMP: turn off falling snow so it stops causing trouble */
+.vgt-snow-layer {
+  display: none !important;
 }
