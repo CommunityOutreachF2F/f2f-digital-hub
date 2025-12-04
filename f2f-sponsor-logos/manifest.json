@@ -48,6 +48,17 @@
       "variant": "primary",
       "notes": "Request transparent PNG or SVG if available."
     },
+       {
+      "company": "White Sands Treatment Center",
+      "event": "2025 Havana Nights",
+      "tier": "Tropical Blue Sponsors",
+      "tier_rank": 3,
+      "filename": "southern-stone-communications-logo--primary.jpg",
+      "url": "https://communityoutreachf2f.github.io/f2f-digital-hub/f2f-sponsor-logos/white-sands-logo--primary.jpg",
+      "format": "jpg",
+      "variant": "primary",
+      "notes": "Request transparent PNG or SVG if available."
+    },
     {
       "company": "Southern Stone Communications",
       "event": "2025 Havana Nights",
@@ -164,7 +175,18 @@
       "tier": "Caribbean Coral Sponsors",
       "tier_rank": 6, 
       "filename": "valle-home-group-logo--primary.png",
-      "url": "https://communityoutreachf2f.github.io/f2f-digital-hub/f2f-sponsor-logos/valle-home-group-logo--primary.png",
+      "url": "https://communityoutreachf2f.github.io/f2f-digital-hub/f2f-sponsor-logos/valle-home-group-logo--secondary.png",
+      "variant": "secondary", 
+      "format": "png",
+      "notes": ""
+    }
+    {
+      "company": "AllyHeath", 
+      "event": "2025 Havana Nights", 
+      "tier": "Caribbean Coral Sponsors",
+      "tier_rank": 6, 
+      "filename": "allyheath-dark-logo--primary.png",
+      "url": "https://communityoutreachf2f.github.io/f2f-digital-hub/f2f-sponsor-logos/allyheath-dark-logo--primary.png",
       "variant": "primary", 
       "format": "png",
       "notes": ""
