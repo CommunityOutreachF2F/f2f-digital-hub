@@ -156,8 +156,8 @@ body {
 .vgt-tag::after {
   content: "";
   position: absolute;
-  top: 15%;
-  right: 12%;
+  top: 12%;
+  right: 10%;
   width: 18px;
   height: 18px;
   background: radial-gradient(circle, #ffffff 0, #ffffff 40%, transparent 60%);
