@@ -127,48 +127,48 @@ body {
 }
 
 /* --------------------------------------- */
-/* Tag Positions & Angles (match data-id) */
+/* Tag Positions & Angles (FINAL from your diagram) */
 /* --------------------------------------- */
 
-/* Pink – custom amount (top-right-ish) */
+/* Pink – custom amount (top-center area) */
 .vgt-tag[data-id="custom-heart"] {
-  top: 19%;
-  left: 69%;
-  --tag-rotate: -12deg;
+  top: 17%;
+  left: 55%;
+  --tag-rotate: -10deg;
 }
 
-/* Blue – $30 (a bit lower & more on the tree) */
+/* Blue – $30 (upper-left branch) */
 .vgt-tag[data-id="angel-30"] {
-  top: 34%;
+  top: 30%;
+  left: 38%;
+  --tag-rotate: 8deg;
+}
+
+/* Red – $60 (upper-right branch) */
+.vgt-tag[data-id="angel-60"] {
+  top: 38%;
+  left: 70%;
+  --tag-rotate: -6deg;
+}
+
+/* Orange – $90 (mid-left branch) */
+.vgt-tag[data-id="angel-90"] {
+  top: 53%;
   left: 42%;
   --tag-rotate: 10deg;
 }
 
-/* Red – $60 (now in the former orange spot, mid-right) */
-.vgt-tag[data-id="angel-60"] {
-  top: 48%;
-  left: 66%;
-  --tag-rotate: 8deg;
-}
-
-/* Orange – $90 (now in the former red spot, mid-ish) */
-.vgt-tag[data-id="angel-90"] {
-  top: 40%;
-  left: 49%;
-  --tag-rotate: -6deg;
-}
-
-/* Green – $150 (lower-left) */
+/* Green – $150 (mid-right branch) */
 .vgt-tag[data-id="angel-150"] {
-  top: 57%;
-  left: 35%;
-  --tag-rotate: -10deg;
+  top: 58%;
+  left: 72%;
+  --tag-rotate: -8deg;
 }
 
-/* Purple – $300 (lower-right) */
+/* Purple – $300 (lower-left branch) */
 .vgt-tag[data-id="angel-300"] {
-  top: 66%;
-  left: 55%;
+  top: 72%;
+  left: 48%;
   --tag-rotate: 6deg;
 }
 
