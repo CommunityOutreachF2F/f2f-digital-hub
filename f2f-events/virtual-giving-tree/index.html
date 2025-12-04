@@ -20,58 +20,54 @@
     <!-- Snow overlay -->
     <div class="vgt-snow-layer" aria-hidden="true"></div>
 
-    <!-- (Header intentionally removed so it doesn’t fight your page hero) -->
+    <!-- Header intentionally removed so it doesn’t fight the page hero -->
 
     <main class="vgt-main">
-      <!-- LEFT: Tree + ornaments -->
+      <!-- LEFT: Tree + angel tags -->
       <section class="vgt-tree-panel">
         <div class="vgt-tree-image-wrap">
-          <img src="spruce-tree--primary.png"
-               alt="Virtual Giving Tree"
-               class="vgt-tree-image" />
+          <img
+            src="spruce-tree--primary.png"
+            alt="Foundations to Freedom Virtual Giving Tree"
+            class="vgt-tree-image"
+          />
 
-          <!-- Ornaments layer (positions controlled in CSS) -->
-          <div class="vgt-ornament-layer">
-            <!-- Pink heart (custom amount) -->
-            <button class="vgt-ornament" data-id="give-heart" type="button">
-              <img src="ornament-pink--primary.png" alt="Give from the Heart" />
+          <!-- Tag layer (positions controlled in CSS) -->
+          <div class="vgt-tag-layer">
+            <!-- Pink – custom amount -->
+            <button class="vgt-tag" data-id="give-heart" type="button">
+              <img src="tag-pink-custom--primary.png" alt="Give from the Heart" />
               <span class="vgt-amount">♥</span>
             </button>
 
-            <!-- $5 -->
-            <button class="vgt-ornament" data-id="warm-wishes" type="button">
-              <img src="ornament-gold--primary.png" alt="$5 Warm Wishes" />
-              <span class="vgt-amount">$5</span>
+            <!-- $30 – Angel for One Resident -->
+            <button class="vgt-tag" data-id="angel-one" type="button">
+              <img src="tag-blue-30--primary.png" alt="$30 – Angel for One Resident" />
+              <span class="vgt-amount">$30</span>
             </button>
 
-            <!-- $10 -->
-            <button class="vgt-ornament" data-id="cozy-comfort" type="button">
-              <img src="ornament-blue--primary.png" alt="$10 Cozy Comfort" />
-              <span class="vgt-amount">$10</span>
+            <!-- $60 – Angel for Two Residents -->
+            <button class="vgt-tag" data-id="angel-two" type="button">
+              <img src="tag-red-60--primary.png" alt="$60 – Angel for Two Residents" />
+              <span class="vgt-amount">$60</span>
             </button>
 
-            <!-- $25 -->
-            <button class="vgt-ornament" data-id="fresh-start-kit" type="button">
-              <img src="ornament-orange--primary.png" alt="$25 Fresh Start Kit" />
-              <span class="vgt-amount">$25</span>
+            <!-- $90 – Angel for Three Residents -->
+            <button class="vgt-tag" data-id="angel-three" type="button">
+              <img src="tag-orange-90--primary.png" alt="$90 – Angel for Three Residents" />
+              <span class="vgt-amount">$90</span>
             </button>
 
-            <!-- $50 -->
-            <button class="vgt-ornament" data-id="hot-meal-hope" type="button">
-              <img src="ornament-red--primary.png" alt="$50 Hot Meal &amp; Hope" />
-              <span class="vgt-amount">$50</span>
+            <!-- $150 – Angel for Five Residents -->
+            <button class="vgt-tag" data-id="angel-five" type="button">
+              <img src="tag-green-150--primary.png" alt="$150 – Angel for Five Residents" />
+              <span class="vgt-amount">$150</span>
             </button>
 
-            <!-- $100 -->
-            <button class="vgt-ornament" data-id="bridge-stability" type="button">
-              <img src="ornament-green--primary.png" alt="$100 Bridge to Stability" />
-              <span class="vgt-amount">$100</span>
-            </button>
-
-            <!-- $250 -->
-            <button class="vgt-ornament" data-id="safe-housing" type="button">
-              <img src="ornament-purple--primary.png" alt="$250 Safe Housing" />
-              <span class="vgt-amount">$250</span>
+            <!-- $300 – Angel for Ten Residents -->
+            <button class="vgt-tag" data-id="angel-ten" type="button">
+              <img src="tag-purple-300--primary.png" alt="$300 – Angel for Ten Residents" />
+              <span class="vgt-amount">$300</span>
             </button>
           </div>
         </div>
@@ -83,7 +79,8 @@
         <p id="vgt-detail-amount"></p>
 
         <p id="vgt-detail-description" class="vgt-detail-description">
-          Tap an ornament on the tree to learn what your gift can provide – from warm socks and hygiene kits to hot meals and safe housing.
+          Tap an angel tag on the tree to choose how many residents you’d like to bless this Christmas.
+          Each $30 Angel Gift helps our “F2F elves” shop for one person’s wish list with care.
         </p>
 
         <button id="vgt-donate-button" class="vgt-donate-button" type="button">
@@ -103,7 +100,7 @@
     </footer>
   </div>
 
-  <!-- Ornament chime -->
+  <!-- Angel tag chime -->
   <audio id="ornamentSound" src="ornament-chime.mp3" preload="auto"></audio>
   <script src="script.js"></script>
 </body>
