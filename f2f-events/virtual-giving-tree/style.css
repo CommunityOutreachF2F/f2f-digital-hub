@@ -130,44 +130,44 @@ body {
 /* Tag Positions & Angles (tuned again)   */
 /* --------------------------------------- */
 
-/* Pink – custom amount (upper-center) */
+/* Pink – custom amount: move right */
 .vgt-tag[data-id="custom-heart"] {
   top: 19%;
-  left: 52%;
+  left: 60%;   /* was 52% */
   --tag-rotate: -10deg;
 }
 
-/* Blue – $30 (upper-left branch) */
+/* Blue – move right */
 .vgt-tag[data-id="angel-30"] {
   top: 36%;
-  left: 33%;
+  left: 40%;   /* was 33% */
   --tag-rotate: 10deg;
 }
 
-/* Red – $60 (upper-right branch) */
+/* Red – move down + right */
 .vgt-tag[data-id="angel-60"] {
-  top: 43%;
-  left: 74%;
+  top: 47%;    /* was 43% */
+  left: 78%;   /* was 74% */
   --tag-rotate: -8deg;
 }
 
-/* Orange – $90 (mid-left branch) */
+/* Orange – unchanged */
 .vgt-tag[data-id="angel-90"] {
   top: 56%;
   left: 36%;
   --tag-rotate: 10deg;
 }
 
-/* Green – $150 (mid-right branch) */
+/* Green – move down + right */
 .vgt-tag[data-id="angel-150"] {
-  top: 61%;
-  left: 74%;
+  top: 66%;    /* was 61% */
+  left: 78%;   /* was 74% */
   --tag-rotate: -8deg;
 }
 
-/* Purple – $300 (lower-left branch) */
+/* Purple – move down a little */
 .vgt-tag[data-id="angel-300"] {
-  top: 76%;
+  top: 80%;    /* was 76% */
   left: 41%;
   --tag-rotate: 6deg;
 }
