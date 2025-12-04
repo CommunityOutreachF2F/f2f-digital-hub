@@ -1,81 +1,65 @@
-// Virtual Giving Tree behavior
-// – handles ornament clicks, text updates, and chime
+// ================================
+// Virtual Giving Tree – Angel Tags
+// ================================
+
+// TODO: set this to your actual Qgiv donation form URL
+const QGIV_DONATION_URL = "https://secure.qgiv.com/for/f2f/placeholder-virtual-giving-tree";
+
+const TAG_CONFIG = {
+  "give-heart": {
+    title: "Give from the Heart",
+    amountLabel: "Custom amount",
+    description:
+      "Prefer a different amount? Choose your own gift and we’ll combine it with others to fully cover Angel Gift Lists for our residents.",
+    presetAmount: null
+  },
+  "angel-one": {
+    title: "Angel for One Resident",
+    amountLabel: "$30",
+    description:
+      "Helps cover one resident’s Angel Gift List — things like a hoodie, shoes, pajamas, headphones, a gift card, and a small treat.",
+    presetAmount: 30
+  },
+  "angel-two": {
+    title: "Angel for Two Residents",
+    amountLabel: "$60",
+    description:
+      "Helps provide Angel Gifts for two residents in our housing programs. Your generosity fills two wish lists with clothing, self care items, and extras.",
+    presetAmount: 60
+  },
+  "angel-three": {
+    title: "Angel for Three Residents",
+    amountLabel: "$90",
+    description:
+      "Sponsors Angel Gift Lists for three residents, making sure more people feel remembered and cared for this Christmas.",
+    presetAmount: 90
+  },
+  "angel-five": {
+    title: "Angel for Five Residents",
+    amountLabel: "$150",
+    description:
+      "Helps provide Angel Gifts for five residents in our recovery housing programs — a great level for families or small groups.",
+    presetAmount: 150
+  },
+  "angel-ten": {
+    title: "Angel for Ten Residents",
+    amountLabel: "$300",
+    description:
+      "Sponsors Angel Gift Lists for ten residents. Perfect for churches, businesses, or community groups who want to make a big impact.",
+    presetAmount: 300
+  }
+};
 
 document.addEventListener("DOMContentLoaded", () => {
-  const ornaments = document.querySelectorAll(".vgt-ornament");
-  const titleEl = document.getElementById("vgt-detail-title");
-  const amountEl = document.getElementById("vgt-detail-amount");
-  const descEl = document.getElementById("vgt-detail-description");
-  const donateBtn = document.getElementById("vgt-donate-button");
+  const tags = Array.from(document.querySelectorAll(".vgt-tag"));
+  const detailTitle = document.getElementById("vgt-detail-title");
+  const detailAmount = document.getElementById("vgt-detail-amount");
+  const detailDescription = document.getElementById("vgt-detail-description");
+  const donateButton = document.getElementById("vgt-donate-button");
   const chime = document.getElementById("ornamentSound");
 
-  if (!ornaments.length) return;
+  let currentTagId = null;
 
-  // Gift copy for each ornament
-  const GIFTS = {
-    "give-heart": {
-      title: "Give from the Heart",
-      amount: "Custom amount",
-      description:
-        "Prefer a different amount? Choose your own gift and we will use it where it is needed most to support safe housing, essentials, and ongoing recovery support."
-    },
-    "warm-wishes": {
-      title: "Warm Wishes",
-      amount: "Suggested gift: $5",
-      description:
-        "Helps provide a holiday card and a small snack for someone in transitional housing. A simple reminder that they are seen and cared about."
-    },
-    "cozy-comfort": {
-      title: "Cozy Comfort",
-      amount: "Suggested gift: $10",
-      description:
-        "Helps provide warm socks, hygiene supplies, or other small essentials that bring comfort and dignity to someone in recovery."
-    },
-    "fresh-start-kit": {
-      title: "Fresh Start Kit",
-      amount: "Suggested gift: $25",
-      description:
-        "Helps stock basic hygiene kits for new arrivals. Clean socks, soap, shampoo, and other essentials help people feel human and hopeful on day one."
-    },
-    "hot-meal-hope": {
-      title: "Hot Meal & Hope",
-      amount: "Suggested gift: $50",
-      description:
-        "Helps provide hot meals and groceries so residents don’t have to choose between nutrition and necessities while they focus on getting well."
-    },
-    "bridge-stability": {
-      title: "Bridge to Stability",
-      amount: "Suggested gift: $100",
-      description:
-        "Helps pay for transportation passes or ID fees needed for job applications, appointments, and services. This gift can remove small but powerful barriers to stability."
-    },
-    "safe-housing": {
-      title: "Safe Housing Support",
-      amount: "Suggested gift: $250",
-      description:
-        "Helps support safe, stable housing for someone in early recovery so they are not returning to unsafe environments while rebuilding their life."
-    }
-  };
-
-  // Optional: if you have a specific donation URL, put it here
-  const BASE_DONATION_URL = ""; // e.g. "https://secure.qgiv.com/XXXX"
-  let currentGiftId = null;
-
-  function setGift(id) {
-    const gift = GIFTS[id];
-    if (!gift) return;
-
-    currentGiftId = id;
-
-    titleEl.textContent = gift.title;
-    amountEl.textContent = gift.amount;
-    descEl.textContent = gift.description;
-
-    // active state on ornaments
-    ornaments.forEach(btn => btn.classList.toggle("vgt-active", btn.dataset.id === id));
-  }
-
-  // Play chime safely (don’t blow up if user hasn’t interacted yet)
   function playChime() {
     if (!chime) return;
     try {
@@ -84,41 +68,51 @@ document.addEventListener("DOMContentLoaded", () => {
     } catch (_) {}
   }
 
-  // Ornament click & hover wiring
-  ornaments.forEach(btn => {
-    const id = btn.dataset.id;
+  function selectTag(tagId) {
+    currentTagId = tagId;
 
+    // visual states
+    tags.forEach(btn => btn.classList.toggle("vgt-active", btn.dataset.id === tagId));
+
+    const config = TAG_CONFIG[tagId];
+    if (!config) return;
+
+    // text content
+    detailTitle.textContent = config.title;
+    detailAmount.textContent =
+      config.amountLabel && config.amountLabel !== "Custom amount"
+        ? `Suggested gift: ${config.amountLabel}`
+        : "";
+    detailDescription.textContent = config.description;
+
+    // simple analytics hook (safe if gtag isn't defined)
+    if (typeof gtag === "function") {
+      gtag("event", "vgt_tag_click", {
+        tag_id: tagId,
+        tag_title: config.title,
+        value: config.presetAmount || 0
+      });
+    }
+  }
+
+  // click on each tag
+  tags.forEach(btn => {
     btn.addEventListener("click", () => {
-      setGift(id);
+      const tagId = btn.dataset.id;
       playChime();
-    });
-
-    btn.addEventListener("keydown", (e) => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        setGift(id);
-        playChime();
-      }
+      selectTag(tagId);
     });
   });
 
-  // Donate button — if BASE_DONATION_URL is set, you can customize per gift
-  donateBtn.addEventListener("click", () => {
-    if (!BASE_DONATION_URL) {
-      // No URL configured yet — just do nothing special
-      return;
+  // donate button – send to Qgiv (same URL for all tags, preset handled on Qgiv side)
+  donateButton.addEventListener("click", () => {
+    if (!QGIV_DONATION_URL || QGIV_DONATION_URL === "https://secure.qgiv.com/for/f2f/placeholder-virtual-giving-tree") {
+      console.warn("Set QGIV_DONATION_URL in script.js to your real donation form URL.");
     }
-
-    // Example: append ?amount= or ?tag=… if you want to track which gift
-    const url = new URL(BASE_DONATION_URL);
-    if (currentGiftId && GIFTS[currentGiftId]) {
-      url.searchParams.set("gift", currentGiftId);
-    }
-    window.open(url.toString(), "_blank");
+    // open in new tab so people can keep admiring your tree 😎
+    window.open(QGIV_DONATION_URL, "_blank");
   });
 
-  // Initial state: prompt the user to click an ornament
-  titleEl.textContent = "Choose a tag to see your impact";
-  amountEl.textContent = "";
-  // description text is already set in HTML
+  // Start with neutral “tap a tag” message (no preselected tag)
+  // (HTML already has that text, so we don't need to set anything here)
 });
