@@ -1,245 +1,67 @@
-/* ====== Base layout & tokens ====== */
-
-:root {
-  --vgt-blue: #0b5ed7;
-  --vgt-green: #1c7c4d;
-  --vgt-bg: #e8f1ff;
-  --vgt-card-bg: #ffffff;
-  --vgt-text: #1e2733;
-  --vgt-muted: #5c6674;
-}
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background: radial-gradient(circle at top, #e8f2ff, #d8e4ff);
-  color: var(--vgt-text);
-}
-
-.vgt-page {
-  min-height: 100vh;
-  padding: 32px 16px 24px;
-  display: flex;
-  flex-direction: column;
-}
-
-/* ====== Main layout ====== */
-
-.vgt-main {
-  max-width: 1120px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
-  gap: 24px;
-}
-
-/* ====== Tree panel ====== */
-
-.vgt-tree-panel {
-  position: relative;
-  border-radius: 24px;
-  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.22);
-  overflow: hidden;
-  background: rgba(255, 255, 255, 0.85);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* snowy background image behind the tree */
-.vgt-tree-panel::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: url("background.png") center/cover no-repeat;
-  z-index: 0;
-}
-
-.vgt-tree-image-wrap {
-  position: relative;
-  z-index: 1;
-  width: min(430px, 80vw);
-  aspect-ratio: 3 / 4;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-}
-
-.vgt-tree-image {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  display: block;
-}
-
-/* layer that holds all tags */
-.vgt-tag-layer {
-  position: absolute;
-  inset: 4% 18% 8% 18%; /* tighter box around the tree body */
-}
-
-/* ====== Tag buttons ====== */
-
-.vgt-tag {
-  position: absolute;
-  width: 140px;
-  height: auto;
-  padding: 0;
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  transform: translate(-50%, -50%);
-  transition: transform 0.12s ease, box-shadow 0.12s ease;
-}
+/* --------------------------------------- */
+/* FIX 1: Control tag size cleanly         */
+/* --------------------------------------- */
 
 .vgt-tag img {
-  width: 100%;
+  width: 140px;       /* adjust smaller/larger if needed */
   height: auto;
-  display: block;
 }
 
-/* Remove focus ring but keep click behaviour */
+
+/* --------------------------------------- */
+/* FIX 2: Remove the white click outline   */
+/* --------------------------------------- */
+
 .vgt-tag:focus,
-.vgt-tag:focus-visible {
-  outline: none;
+.vgt-tag:active {
+  outline: none !important;
+  box-shadow: none !important;
 }
 
-/* Active tag state (soft glow) */
-.vgt-tag.vgt-tag--active {
-  transform: translate(-50%, -50%) scale(1.04);
-  box-shadow: 0 0 14px rgba(255, 255, 255, 0.9);
+
+/* --------------------------------------- */
+/* FIX 3: Spread out tag positions         */
+/* (These are NEW clean positions)         */
+/* --------------------------------------- */
+
+.vgt-tag-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
-/* ====== Tag positions (spread out) ====== */
-/* Pink – custom */
-.vgt-tag[data-id="custom-heart"] {
-  top: 23%;
-  left: 40%;
+/* Pink ($$$ custom) */
+.vgt-tag[data-id="give-heart"] {
+  top: 14%;
+  left: 37%;
 }
 
-/* Blue – $30 */
-.vgt-tag[data-id="angel-30"] {
-  top: 38%;
-  left: 35%;
+/* Blue ($30) */
+.vgt-tag[data-id="gift-30"] {
+  top: 28%;
+  left: 32%;
 }
 
-/* Red – $60 */
-.vgt-tag[data-id="angel-60"] {
-  top: 42%;
-  left: 60%;
+/* Red ($60) */
+.vgt-tag[data-id="gift-60"] {
+  top: 40%;
+  left: 45%;
 }
 
-/* Orange – $90 */
-.vgt-tag[data-id="angel-90"] {
-  top: 52%;
-  left: 40%;
+/* Orange ($90) */
+.vgt-tag[data-id="gift-90"] {
+  top: 33%;
+  left: 57%;
 }
 
-/* Green – $150 */
-.vgt-tag[data-id="angel-150"] {
+/* Green ($150) */
+.vgt-tag[data-id="gift-150"] {
+  top: 48%;
+  left: 52%;
+}
+
+/* Purple ($300) - stays in best spot */
+.vgt-tag[data-id="gift-300"] {
   top: 58%;
-  left: 63%;
-}
-
-/* Purple – $300 */
-.vgt-tag[data-id="angel-300"] {
-  top: 70%;
-  left: 48%;
-}
-
-/* ====== Details panel ====== */
-
-.vgt-details-panel {
-  border-radius: 24px;
-  background: var(--vgt-card-bg);
-  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.18);
-  padding: 28px 28px 26px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.vgt-details-panel h2 {
-  margin: 0 0 4px;
-  color: var(--vgt-blue);
-}
-
-.vgt-detail-amount {
-  margin: 0 0 6px;
-  font-weight: 700;
-  color: var(--vgt-green);
-}
-
-.vgt-detail-description {
-  margin: 0 0 14px;
-  color: var(--vgt-text);
-}
-
-/* Button */
-
-.vgt-donate-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px 26px;
-  border-radius: 999px;
-  border: none;
-  background: var(--vgt-blue);
-  color: #ffffff;
-  font-weight: 600;
-  font-size: 0.98rem;
-  cursor: pointer;
-  box-shadow: 0 12px 26px rgba(11, 94, 215, 0.45);
-  transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
-}
-
-.vgt-donate-button:hover {
-  background: #094ab0;
-  transform: translateY(-1px);
-  box-shadow: 0 16px 32px rgba(11, 94, 215, 0.55);
-}
-
-.vgt-small-note {
-  margin-top: 10px;
-  font-size: 0.86rem;
-  color: var(--vgt-muted);
-}
-
-/* ====== Footer ====== */
-
-.vgt-footer {
-  margin-top: 18px;
-  text-align: center;
-  font-size: 0.82rem;
-  color: var(--vgt-muted);
-}
-
-/* ====== Responsive ====== */
-
-@media (max-width: 900px) {
-  .vgt-main {
-    grid-template-columns: 1fr;
-    gap: 18px;
-  }
-
-  .vgt-tree-panel,
-  .vgt-details-panel {
-    max-width: 560px;
-    width: 100%;
-    margin: 0 auto;
-  }
-
-  .vgt-page {
-    padding: 20px 10px 18px;
-  }
-
-  .vgt-tag {
-    width: 120px;
-  }
+  left: 40%;
 }
