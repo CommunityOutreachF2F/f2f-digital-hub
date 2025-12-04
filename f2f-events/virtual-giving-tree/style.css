@@ -137,25 +137,25 @@ body {
   --tag-rotate: -12deg;
 }
 
-/* Blue – $30 (upper-left) */
+/* Blue – $30 (a bit lower & more on the tree) */
 .vgt-tag[data-id="angel-30"] {
-  top: 30%;
-  left: 34%;
+  top: 34%;
+  left: 42%;
   --tag-rotate: 10deg;
 }
 
-/* Red – $60 (mid center-left) */
+/* Red – $60 (now in the former orange spot, mid-right) */
 .vgt-tag[data-id="angel-60"] {
-  top: 40%;
-  left: 49%;
-  --tag-rotate: -6deg;
-}
-
-/* Orange – $90 (mid-right) */
-.vgt-tag[data-id="angel-90"] {
   top: 48%;
   left: 66%;
   --tag-rotate: 8deg;
+}
+
+/* Orange – $90 (now in the former red spot, mid-ish) */
+.vgt-tag[data-id="angel-90"] {
+  top: 40%;
+  left: 49%;
+  --tag-rotate: -6deg;
 }
 
 /* Green – $150 (lower-left) */
