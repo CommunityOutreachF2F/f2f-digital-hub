@@ -85,21 +85,28 @@ document.addEventListener("DOMContentLoaded", () => {
     };
   }
 
-  // Attach handlers
-  tagButtons.forEach(btn => {
-    btn.addEventListener("click", () => {
-      const id = btn.getAttribute("data-id");
-      applyState(id);
+// Attach handlers
+tagButtons.forEach(btn => {
+  btn.addEventListener("click", () => {
+    const id = btn.getAttribute("data-id");
+    applyState(id);
 
-      // play chime (ignore errors if user hasn't interacted yet, etc.)
-      try {
-        if (sound) sound.currentTime = 0;
-        if (sound) sound.play();
-      } catch (e) {
-        // no-op
-      }
-    });
+    // sparkle burst on the clicked tag
+    btn.classList.remove("vgt-tag--sparkle"); // reset if spam-clicked
+    // force reflow so the animation can restart
+    // eslint-disable-next-line no-unused-expressions
+    btn.offsetWidth;
+    btn.classList.add("vgt-tag--sparkle");
+
+    // play chime
+    try {
+      if (sound) sound.currentTime = 0;
+      if (sound) sound.play();
+    } catch (e) {
+      // no-op
+    }
   });
+});
 
   // Initialize default state
   applyState(activeId);
