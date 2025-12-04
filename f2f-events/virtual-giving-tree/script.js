@@ -51,7 +51,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const amountEl = document.getElementById("vgt-detail-amount");
   const descEl = document.getElementById("vgt-detail-description");
   const donateBtn = document.getElementById("vgt-donate-button");
-  const sound = document.getElementById("tagSound");
+    const sound = document.getElementById("tagSound");
+  if (sound) {
+    sound.volume = 0.75; // tweak between 0.5 and 1.0 if needed
+  }
 
   let activeId = "angel-150"; // default selection (you can change if you want)
 
