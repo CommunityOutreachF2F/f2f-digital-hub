@@ -1,4 +1,4 @@
-/* ====== Tokens / base ====== */
+/* ====== Base layout & tokens ====== */
 
 :root {
   --vgt-blue: #0b5ed7;
@@ -22,56 +22,16 @@ body {
   color: var(--vgt-text);
 }
 
-/* ====== Page layout ====== */
-
 .vgt-page {
   min-height: 100vh;
+  padding: 32px 16px 24px;
   display: flex;
   flex-direction: column;
-  padding: 32px 16px 24px;
-  position: relative;
-  overflow: hidden;
-}
-
-/* ====== Snow overlay ====== */
-
-.vgt-snow-layer {
-  pointer-events: none;
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-}
-
-.vgt-snow-layer::before,
-.vgt-snow-layer::after {
-  content: "";
-  position: absolute;
-  inset: -100px;
-  background-image:
-    radial-gradient(3px 3px at 20% 20%, rgba(255, 255, 255, 0.9) 0, transparent 55%),
-    radial-gradient(2px 2px at 80% 30%, rgba(255, 255, 255, 0.8) 0, transparent 55%),
-    radial-gradient(2px 2px at 40% 80%, rgba(255, 255, 255, 0.75) 0, transparent 55%),
-    radial-gradient(3px 3px at 70% 60%, rgba(255, 255, 255, 0.9) 0, transparent 55%);
-  background-size: 260px 260px;
-  opacity: 0.45;
-  animation: vgt-snow-fall 22s linear infinite;
-}
-
-.vgt-snow-layer::after {
-  animation-duration: 32s;
-  opacity: 0.3;
-}
-
-@keyframes vgt-snow-fall {
-  from { transform: translate3d(0, -80px, 0); }
-  to   { transform: translate3d(0, 120px, 0); }
 }
 
 /* ====== Main layout ====== */
 
 .vgt-main {
-  position: relative;
-  z-index: 1;
   max-width: 1120px;
   margin: 0 auto;
   display: grid;
@@ -86,18 +46,18 @@ body {
   border-radius: 24px;
   box-shadow: 0 18px 40px rgba(15, 23, 42, 0.22);
   overflow: hidden;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.85);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
+/* snowy background image behind the tree */
 .vgt-tree-panel::before {
   content: "";
   position: absolute;
   inset: 0;
   background: url("background.png") center/cover no-repeat;
-  opacity: 1;
   z-index: 0;
 }
 
@@ -118,94 +78,79 @@ body {
   display: block;
 }
 
-/* ====== Tag layer & positions ====== */
-
+/* layer that holds all tags */
 .vgt-tag-layer {
   position: absolute;
-  inset: 6% 14% 10% 14%; /* bounding box around tree body */
+  inset: 4% 18% 8% 18%; /* tighter box around the tree body */
 }
 
-/* Base tag style */
+/* ====== Tag buttons ====== */
 
 .vgt-tag {
   position: absolute;
-  width: 96px;
-  height: 66px;
+  width: 140px;
+  height: auto;
   padding: 0;
   border: none;
   background: transparent;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   cursor: pointer;
   transform: translate(-50%, -50%);
-  outline: none;
-  transition:
-    transform 0.12s ease,
-    filter 0.12s ease;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
 }
 
 .vgt-tag img {
   width: 100%;
-  height: 100%;
-  object-fit: contain;
+  height: auto;
   display: block;
 }
 
-/* No dollar overlay text any more */
-.vgt-amount,
-.vgt-tag-amount {
-  display: none;
-}
-
-/* Active tag – soft glow, NO white ring */
-.vgt-tag--active {
-  transform: translate(-50%, -50%) scale(1.04);
-  filter: drop-shadow(0 10px 20px rgba(15, 23, 42, 0.4));
-}
-
-/* Accessible keyboard focus outline */
+/* Remove focus ring but keep click behaviour */
+.vgt-tag:focus,
 .vgt-tag:focus-visible {
-  outline: 2px solid rgba(11, 94, 215, 0.9);
-  outline-offset: 3px;
+  outline: none;
 }
 
-/* ====== Individual tag positions (spread out more) ====== */
-
-/* Heart – upper left */
-.vgt-tag[data-id="angel-heart"] {
-  top: 24%;
-  left: 36%;
+/* Active tag state (soft glow) */
+.vgt-tag.vgt-tag--active {
+  transform: translate(-50%, -50%) scale(1.04);
+  box-shadow: 0 0 14px rgba(255, 255, 255, 0.9);
 }
 
-/* $30 – One Resident (blue) */
+/* ====== Tag positions (spread out) ====== */
+/* Pink – custom */
+.vgt-tag[data-id="custom-heart"] {
+  top: 23%;
+  left: 40%;
+}
+
+/* Blue – $30 */
 .vgt-tag[data-id="angel-30"] {
-  top: 36%;
-  left: 30%;
-}
-
-/* $60 – Two Residents (red) */
-.vgt-tag[data-id="angel-60"] {
-  top: 51%;
-  left: 29%;
-}
-
-/* $90 – Three Residents (orange) */
-.vgt-tag[data-id="angel-90"] {
   top: 38%;
-  left: 66%;
+  left: 35%;
 }
 
-/* $150 – Five Residents (green) */
-.vgt-tag[data-id="angel-150"] {
+/* Red – $60 */
+.vgt-tag[data-id="angel-60"] {
+  top: 42%;
+  left: 60%;
+}
+
+/* Orange – $90 */
+.vgt-tag[data-id="angel-90"] {
   top: 52%;
-  left: 64%;
+  left: 40%;
 }
 
-/* $300 – Ten Residents (purple) */
+/* Green – $150 */
+.vgt-tag[data-id="angel-150"] {
+  top: 58%;
+  left: 63%;
+}
+
+/* Purple – $300 */
 .vgt-tag[data-id="angel-300"] {
-  top: 66%;
-  left: 49%;
+  top: 70%;
+  left: 48%;
 }
 
 /* ====== Details panel ====== */
@@ -220,7 +165,6 @@ body {
   gap: 10px;
 }
 
-.vgt-details-panel h1,
 .vgt-details-panel h2 {
   margin: 0 0 4px;
   color: var(--vgt-blue);
@@ -229,7 +173,7 @@ body {
 .vgt-detail-amount {
   margin: 0 0 6px;
   font-weight: 700;
-  color: var(--vgt-green); /* this is the green subheading */
+  color: var(--vgt-green);
 }
 
 .vgt-detail-description {
@@ -237,13 +181,13 @@ body {
   color: var(--vgt-text);
 }
 
-/* Donate button */
+/* Button */
 
 .vgt-donate-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 11px 28px;
+  padding: 10px 26px;
   border-radius: 999px;
   border: none;
   background: var(--vgt-blue);
@@ -252,10 +196,7 @@ body {
   font-size: 0.98rem;
   cursor: pointer;
   box-shadow: 0 12px 26px rgba(11, 94, 215, 0.45);
-  transition:
-    transform 0.12s ease,
-    box-shadow 0.12s ease,
-    background 0.12s ease;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
 }
 
 .vgt-donate-button:hover {
@@ -298,12 +239,7 @@ body {
     padding: 20px 10px 18px;
   }
 
-  .vgt-tree-image-wrap {
-    width: min(380px, 90vw);
-  }
-
   .vgt-tag {
-    width: 88px;
-    height: 60px;
+    width: 120px;
   }
 }
