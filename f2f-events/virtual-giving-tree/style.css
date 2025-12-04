@@ -136,34 +136,24 @@ body {
 */
 
 
-/* ---------------------------------------
-   NEW SPARKLE EFFECT – OPTION A (STAR)
------------------------------------------*/
+/* ============================================
+   NEW TWO-POINT SPARKLE EFFECT (Gold Stars)
+   Top-Right + Bottom-Left
+   ============================================ */
 
-.vgt-tag {
-  position: absolute;
-  border: none;
-  background: transparent;
-  padding: 0;
-  cursor: pointer;
-  pointer-events: auto;
-  --tag-rotate: 0deg;
-  transform: translate(-50%, -50%) rotate(var(--tag-rotate));
-  transition: transform 0.18s ease, filter 0.18s ease;
-}
-
-/* star positioned near top-right of the tag */
-.vgt-tag::after {
+/* STARBURST SHAPE — used by both sparkles */
+.vgt-tag::after,
+.vgt-tag::before {
   content: "";
   position: absolute;
-  top: 12%;
-  right: 10%;
-  width: 18px;
-  height: 18px;
-  background: radial-gradient(circle, #fff7d1 0, #ffe89a 40%, transparent 60%);
-  transform: scale(0) rotate(0deg);
+  width: 16px;
+  height: 16px;
+  background: radial-gradient(circle, #fff7d1 0%, #ffe89a 40%, transparent 60%);
   opacity: 0;
+  transform: scale(0.1) rotate(0deg);
   pointer-events: none;
+
+  /* star shape */
   clip-path: polygon(
     50% 0%,
     61% 35%,
@@ -178,23 +168,37 @@ body {
   );
 }
 
-/* trigger */
-.vgt-tag--sparkle::after {
-  animation: vgt-star-sparkle 0.4s ease-out forwards;
+/* ⭐ Top-Right Sparkle */
+.vgt-tag::after {
+  top: 8%;
+  right: 5%;
 }
 
-@keyframes vgt-star-sparkle {
+/* ⭐ Bottom-Left Sparkle */
+.vgt-tag::before {
+  bottom: 10%;
+  left: 8%;
+}
+
+/* Trigger both sparkles */
+.vgt-tag--sparkle::after,
+.vgt-tag--sparkle::before {
+  animation: vgt-starburst-dual 0.45s ease-out forwards;
+}
+
+/* Animation for both sparkles */
+@keyframes vgt-starburst-dual {
   0% {
     opacity: 0;
     transform: scale(0.2) rotate(0deg);
   }
-  40% {
+  35% {
     opacity: 1;
-    transform: scale(1.1) rotate(12deg);
+    transform: scale(1.2) rotate(12deg);
   }
   100% {
     opacity: 0;
-    transform: scale(0.4) rotate(-20deg);
+    transform: scale(0.5) rotate(-20deg);
   }
 }
 
