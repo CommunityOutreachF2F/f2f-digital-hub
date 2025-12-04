@@ -185,42 +185,52 @@ body {
   outline-offset: 3px;
 }
 
-/* ====== Tag positions (roughly matching your sketch) ====== */
+/* ====== Tag positions – more spread out ====== */
 
-/* pink custom heart – upper-left on tree */
-.vgt-tag[data-id="give-heart"] {
-  top: 24%;
+.vgt-tag-layer {
+  position: absolute;
+  inset: 6% 16% 10% 16%; /* gives us a bit more width on each side of the tree */
+}
+
+/* 1) Pink heart – slight downshift, stays toward upper-left */
+.vgt-tag[data-id="angel-heart"] {
+  top: 22%;
   left: 36%;
 }
 
-/* $30 – Angel for One (blue) – upper-mid left */
-.vgt-tag[data-id="angel-one"] {
-  top: 35%;
-  left: 40%;
+/* 2) $30 – Angel for One Resident (blue)
+   A bit lower, more left, clearly on its own branch */
+.vgt-tag[data-id="angel-30"] {
+  top: 34%;
+  left: 32%;
 }
 
-/* $60 – Angel for Two (red) – mid-left */
-.vgt-tag[data-id="angel-two"] {
-  top: 46%;
-  left: 37%;
+/* 3) $60 – Angel for Two Residents (red)
+   Moved down & left-ish to start a gentle diagonal */
+.vgt-tag[data-id="angel-60"] {
+  top: 47%;
+  left: 34%;
 }
 
-/* $90 – Angel for Three (orange) – upper-mid right */
-.vgt-tag[data-id="angel-three"] {
-  top: 39%;
+/* 4) $90 – Angel for Three Residents (orange)
+   SWAPPED general role with red: slightly higher-right mid-tree */
+.vgt-tag[data-id="angel-90"] {
+  top: 40%;
   left: 60%;
 }
 
-/* $150 – Angel for Five (green) – mid-right */
-.vgt-tag[data-id="angel-five"] {
-  top: 53%;
-  left: 60%;
+/* 5) $150 – Angel for Five Residents (green)
+   Further down & right for a nice flow by amount */
+.vgt-tag[data-id="angel-150"] {
+  top: 54%;
+  left: 61%;
 }
 
-/* $300 – Angel for Ten (purple) – lower-middle */
-.vgt-tag[data-id="angel-ten"] {
-  top: 68%;
-  left: 46%;
+/* 6) $300 – Angel for Ten Residents (purple)
+   You liked this one – keep it lower center-ish */
+.vgt-tag[data-id="angel-300"] {
+  top: 66%;
+  left: 47%;
 }
 
 /* ====== Details panel ====== */
