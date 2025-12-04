@@ -33,7 +33,7 @@ body {
   overflow: hidden;
 }
 
-/* ====== Snow overlay (background snow, not the tag snow art) ====== */
+/* ====== Snow overlay ====== */
 
 .vgt-snow-layer {
   pointer-events: none;
@@ -71,7 +71,7 @@ body {
 
 .vgt-main {
   position: relative;
-  z-index: 1; /* above snow */
+  z-index: 1;
   max-width: 1120px;
   margin: 0 auto;
   display: grid;
@@ -103,7 +103,7 @@ body {
 
 .vgt-tree-image-wrap {
   position: relative;
-  z-index: 1; /* above panel bg */
+  z-index: 1;
   width: min(430px, 80vw);
   aspect-ratio: 3 / 4;
   display: flex;
@@ -122,15 +122,15 @@ body {
 
 .vgt-tag-layer {
   position: absolute;
-  inset: 6% 16% 10% 16%; /* bounding box around tree body */
+  inset: 6% 14% 10% 14%; /* bounding box around tree body */
 }
 
 /* Base tag style */
 
 .vgt-tag {
   position: absolute;
-  width: 94px;
-  height: 64px;
+  width: 96px;
+  height: 66px;
   padding: 0;
   border: none;
   background: transparent;
@@ -142,7 +142,6 @@ body {
   outline: none;
   transition:
     transform 0.12s ease,
-    box-shadow 0.12s ease,
     filter 0.12s ease;
 }
 
@@ -153,60 +152,57 @@ body {
   display: block;
 }
 
-/* No text overlay anymore */
+/* No dollar overlay text any more */
 .vgt-amount,
 .vgt-tag-amount {
   display: none;
 }
 
-/* Active tag – soft glow, no white ring */
-
-.vgt-tag.vgt-active {
+/* Active tag – soft glow, NO white ring */
+.vgt-tag--active {
   transform: translate(-50%, -50%) scale(1.04);
-  box-shadow: 0 12px 26px rgba(11, 94, 215, 0.6);
-  border-radius: 12px;
+  filter: drop-shadow(0 10px 20px rgba(15, 23, 42, 0.4));
 }
 
-/* Accessible focus outline (thin, not huge white blob) */
-
+/* Accessible keyboard focus outline */
 .vgt-tag:focus-visible {
-  outline: 2px solid rgba(11, 94, 215, 0.85);
+  outline: 2px solid rgba(11, 94, 215, 0.9);
   outline-offset: 3px;
 }
 
-/* ====== Individual tag positions (tuned for your art) ====== */
+/* ====== Individual tag positions (spread out more) ====== */
 
-/* Heart – top left-ish but on the tree */
+/* Heart – upper left */
 .vgt-tag[data-id="angel-heart"] {
-  top: 23%;
-  left: 40%;
+  top: 24%;
+  left: 36%;
 }
 
-/* $30 – Angel for One Resident (blue) */
+/* $30 – One Resident (blue) */
 .vgt-tag[data-id="angel-30"] {
-  top: 35%;
-  left: 34%;
+  top: 36%;
+  left: 30%;
 }
 
-/* $60 – Angel for Two Residents (red) */
+/* $60 – Two Residents (red) */
 .vgt-tag[data-id="angel-60"] {
-  top: 47%;
-  left: 33%;
+  top: 51%;
+  left: 29%;
 }
 
-/* $90 – Angel for Three Residents (orange) */
+/* $90 – Three Residents (orange) */
 .vgt-tag[data-id="angel-90"] {
-  top: 40%;
-  left: 63%;
+  top: 38%;
+  left: 66%;
 }
 
-/* $150 – Angel for Five Residents (green) */
+/* $150 – Five Residents (green) */
 .vgt-tag[data-id="angel-150"] {
-  top: 53%;
-  left: 63%;
+  top: 52%;
+  left: 64%;
 }
 
-/* $300 – Angel for Ten Residents (purple) */
+/* $300 – Ten Residents (purple) */
 .vgt-tag[data-id="angel-300"] {
   top: 66%;
   left: 49%;
@@ -233,7 +229,7 @@ body {
 .vgt-detail-amount {
   margin: 0 0 6px;
   font-weight: 700;
-  color: var(--vgt-green);
+  color: var(--vgt-green); /* this is the green subheading */
 }
 
 .vgt-detail-description {
@@ -307,7 +303,7 @@ body {
   }
 
   .vgt-tag {
-    width: 86px;
-    height: 58px;
+    width: 88px;
+    height: 60px;
   }
 }
