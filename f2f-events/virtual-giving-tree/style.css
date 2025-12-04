@@ -137,10 +137,10 @@ body {
   --tag-rotate: -10deg;
 }
 
-/* Blue – $30 (upper-left branch) */
+/* Blue – $30 (move way right so it’s fully on the tree) */
 .vgt-tag[data-id="angel-30"] {
   top: 36%;
-  left: 32%;   /* farther left so it’s clearly on the left side */
+  left: 45%;   /* was 32% */
   --tag-rotate: 10deg;
 }
 
@@ -151,17 +151,17 @@ body {
   --tag-rotate: -8deg;
 }
 
-/* Orange – $90 (mid-left branch, “locked” left side) */
+/* Orange – $90 (come down more on the left side) */
 .vgt-tag[data-id="angel-90"] {
-  top: 56%;
-  left: 45%;   /* left half of the tree, but not in a straight line with blue/purple */
+  top: 62%;    /* was 56% */
+  left: 45%;   /* same left, just lower */
   --tag-rotate: 10deg;
 }
 
-/* Green – $150 (mid-lower right branch) */
+/* Green – $150 (nudged slightly lower so it doesn't clash with orange) */
 .vgt-tag[data-id="angel-150"] {
-  top: 68%;
-  left: 80%;   /* strong right-side anchor */
+  top: 74%;    /* was 68% */
+  left: 80%;   /* same horizontal position */
   --tag-rotate: -8deg;
 }
 
