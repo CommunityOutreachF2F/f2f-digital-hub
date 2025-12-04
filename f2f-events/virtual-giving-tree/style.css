@@ -127,48 +127,48 @@ body {
 }
 
 /* --------------------------------------- */
-/* Tag Positions & Angles (tuned again)   */
+/* Tag Positions & Angles (zig-zag, de-lined) */
 /* --------------------------------------- */
 
-/* Pink – custom amount: move right */
+/* Pink – custom amount (upper, slightly right of center) */
 .vgt-tag[data-id="custom-heart"] {
   top: 19%;
-  left: 60%;   /* was 52% */
+  left: 58%;   /* on the tree, but not way out on the edge */
   --tag-rotate: -10deg;
 }
 
-/* Blue – move right */
+/* Blue – $30 (upper-left branch) */
 .vgt-tag[data-id="angel-30"] {
   top: 36%;
-  left: 40%;   /* was 33% */
+  left: 32%;   /* farther left so it’s clearly on the left side */
   --tag-rotate: 10deg;
 }
 
-/* Red – move down + right */
+/* Red – $60 (upper-right / mid-right branch) */
 .vgt-tag[data-id="angel-60"] {
-  top: 47%;    /* was 43% */
-  left: 78%;   /* was 74% */
+  top: 47%;    /* a bit lower than blue */
+  left: 78%;   /* clearly on the right side */
   --tag-rotate: -8deg;
 }
 
-/* Orange – unchanged */
+/* Orange – $90 (mid-left branch, “locked” left side) */
 .vgt-tag[data-id="angel-90"] {
   top: 56%;
-  left: 36%;
+  left: 45%;   /* left half of the tree, but not in a straight line with blue/purple */
   --tag-rotate: 10deg;
 }
 
-/* Green – move down + right */
+/* Green – $150 (mid-lower right branch) */
 .vgt-tag[data-id="angel-150"] {
-  top: 66%;    /* was 61% */
-  left: 78%;   /* was 74% */
+  top: 68%;
+  left: 80%;   /* strong right-side anchor */
   --tag-rotate: -8deg;
 }
 
-/* Purple – move down a little */
+/* Purple – $300 (lower-left branch) */
 .vgt-tag[data-id="angel-300"] {
-  top: 80%;    /* was 76% */
-  left: 41%;
+  top: 82%;
+  left: 30%;   /* lower and clearly left, not under orange */
   --tag-rotate: 6deg;
 }
 
