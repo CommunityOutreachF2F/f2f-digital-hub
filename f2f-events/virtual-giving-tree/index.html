@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Virtual Giving Tree</title>
-
   <link rel="stylesheet" href="style.css" />
 
   <!-- Google Analytics 4 -->
@@ -18,55 +17,47 @@
 </head>
 <body>
   <div class="vgt-page">
-    <!-- Snow overlay -->
-    <div class="vgt-snow-layer" aria-hidden="true"></div>
-
     <main class="vgt-main">
       <!-- LEFT: Tree + angel tags -->
       <section class="vgt-tree-panel">
         <div class="vgt-tree-image-wrap">
+          <!-- snowy background is handled in CSS -->
           <img
             src="spruce-tree--primary.png"
-            alt="Foundations to Freedom Virtual Giving Tree"
+            alt="Christmas tree for the Foundations to Freedom Giving Tree"
             class="vgt-tree-image"
           />
 
-          <!-- Angel tags layer (positions controlled in CSS) -->
+          <!-- Tags layer (positions controlled in CSS) -->
           <div class="vgt-tag-layer">
-            <!-- Custom / heart tag -->
-            <button class="vgt-tag" data-id="angel-heart" type="button">
-              <img src="tag-pink-custom--primary.png"
-                   alt="Give from the Heart - custom Angel Gift" />
+            <!-- Pink – custom amount -->
+            <button class="vgt-tag" data-id="custom-heart" type="button">
+              <img src="tag-pink-custom--primary.png" alt="Give from the Heart – Custom Angel Gift" />
             </button>
 
-            <!-- $30 – Angel for One Resident -->
+            <!-- Blue – $30 -->
             <button class="vgt-tag" data-id="angel-30" type="button">
-              <img src="tag-blue-30--primary.png"
-                   alt="Angel for One Resident - $30" />
+              <img src="tag-blue-30--primary.png" alt="$30 Angel Gift for one resident" />
             </button>
 
-            <!-- $60 – Angel for Two Residents -->
+            <!-- Red – $60 -->
             <button class="vgt-tag" data-id="angel-60" type="button">
-              <img src="tag-red-60--primary.png"
-                   alt="Angel for Two Residents - $60" />
+              <img src="tag-red-60--primary.png" alt="$60 Angel Gifts for two residents" />
             </button>
 
-            <!-- $90 – Angel for Three Residents -->
+            <!-- Orange – $90 -->
             <button class="vgt-tag" data-id="angel-90" type="button">
-              <img src="tag-orange-90--primary.png"
-                   alt="Angel for Three Residents - $90" />
+              <img src="tag-orange-90--primary.png" alt="$90 Angel Gifts for three residents" />
             </button>
 
-            <!-- $150 – Angel for Five Residents -->
+            <!-- Green – $150 -->
             <button class="vgt-tag" data-id="angel-150" type="button">
-              <img src="tag-green-150--primary.png"
-                   alt="Angel for Five Residents - $150" />
+              <img src="tag-green-150--primary.png" alt="$150 Angel Gifts for five residents" />
             </button>
 
-            <!-- $300 – Angel for Ten Residents -->
+            <!-- Purple – $300 -->
             <button class="vgt-tag" data-id="angel-300" type="button">
-              <img src="tag-purple-300--primary.png"
-                   alt="Angel for Ten Residents - $300" />
+              <img src="tag-purple-300--primary.png" alt="$300 Angel Gifts for ten residents" />
             </button>
           </div>
         </div>
@@ -78,9 +69,9 @@
         <p id="vgt-detail-amount" class="vgt-detail-amount"></p>
 
         <p id="vgt-detail-description" class="vgt-detail-description">
-          Tap an angel tag on the tree to choose how many residents you’d like
-          to bless this Christmas. Each $30 Angel Gift helps our “F2F elves”
-          shop for one person’s wish list with care.
+          Tap an angel tag on the tree to choose how many residents you’d like to bless this
+          Christmas. Each $30 Angel Gift helps our “F2F elves” shop for one person’s wish list
+          with care.
         </p>
 
         <button id="vgt-donate-button" class="vgt-donate-button" type="button">
@@ -88,9 +79,8 @@
         </button>
 
         <p class="vgt-small-note">
-          You’ll enter your final gift amount on our secure online donation page.
-          Every dollar helps decorate the Virtual Giving Tree with real support
-          for people in recovery.
+          You’ll enter your final gift amount on our secure online donation page. Every dollar
+          helps decorate the Virtual Giving Tree with real support for people in recovery.
         </p>
       </section>
     </main>
@@ -102,7 +92,6 @@
 
   <!-- Angel tag chime -->
   <audio id="tagSound" src="ornament-chime.mp3" preload="auto"></audio>
-  <!-- NOTE: new filename to avoid old cached script -->
-  <script src="script-tags.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
