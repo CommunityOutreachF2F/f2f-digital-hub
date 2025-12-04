@@ -155,7 +155,7 @@ body {
 .vgt-tag[data-id="angel-90"] {
   top: 62%;    /* was 56% */
   left: 45%;   /* same left, just lower */
-  --tag-rotate: 10deg;
+  --tag-rotate: -10deg;
 }
 
 /* Green – $150 (nudged slightly lower so it doesn't clash with orange) */
