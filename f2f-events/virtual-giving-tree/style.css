@@ -1,67 +1,288 @@
 /* --------------------------------------- */
-/* FIX 1: Control tag size cleanly         */
+/* Base + Layout                          */
 /* --------------------------------------- */
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, sans-serif;
+  color: #0f172a;
+}
+
+/* Page wrapper */
+.vgt-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 24px 16px;
+  background: radial-gradient(circle at top, #e0f2ff 0, #f8fafc 55%, #e5e7eb 100%);
+}
+
+/* Main content: tree (left) + details (right) */
+.vgt-main {
+  max-width: 1120px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  gap: 24px;
+  align-items: stretch;
+  flex-wrap: wrap;
+}
+
+/* --------------------------------------- */
+/* Tree Panel                             */
+/* --------------------------------------- */
+
+.vgt-tree-panel {
+  flex: 1 1 360px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 18px;
+  padding: 16px;
+  background-image: url("background.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.25);
+}
+
+/* Tree + tags wrap */
+.vgt-tree-image-wrap {
+  position: relative;
+  max-width: 420px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.vgt-tree-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 12px 22px rgba(15, 23, 42, 0.5));
+}
+
+/* --------------------------------------- */
+/* Tag Layer + Buttons                    */
+/* --------------------------------------- */
+
+.vgt-tag-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none; /* layer itself ignores clicks */
+}
+
+/* Each tag button */
+.vgt-tag {
+  position: absolute;
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+  pointer-events: auto; /* re-enable on button */
+  transition: transform 0.18s ease, filter 0.18s ease;
+}
+
+/* Tag images – global size control */
 .vgt-tag img {
-  width: 140px;       /* adjust smaller/larger if needed */
+  display: block;
+  width: 140px;
   height: auto;
 }
 
-
-/* --------------------------------------- */
-/* FIX 2: Remove the white click outline   */
-/* --------------------------------------- */
-
+/* Remove default focus ring */
 .vgt-tag:focus,
 .vgt-tag:active {
   outline: none !important;
   box-shadow: none !important;
 }
 
-
-/* --------------------------------------- */
-/* FIX 3: Spread out tag positions         */
-/* (These are NEW clean positions)         */
-/* --------------------------------------- */
-
-.vgt-tag-layer {
-  position: absolute;
-  top: 0;
-  left: 0;
+/* Hover / active glow */
+.vgt-tag:hover {
+  transform: translate(-50%, -50%) scale(1.05);
+  filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.85));
 }
 
-/* Pink ($$$ custom) */
-.vgt-tag[data-id="give-heart"] {
-  top: 14%;
+.vgt-tag--active {
+  transform: translate(-50%, -50%) scale(1.075);
+  filter: drop-shadow(0 0 16px rgba(255, 255, 255, 0.95));
+  z-index: 3;
+}
+
+/* --------------------------------------- */
+/* Tag Positions (match data-id in HTML)  */
+/* --------------------------------------- */
+
+/* Pink – custom amount */
+.vgt-tag[data-id="custom-heart"] {
+  top: 18%;
+  left: 64%;
+}
+
+/* Blue – $30 */
+.vgt-tag[data-id="angel-30"] {
+  top: 31%;
+  left: 30%;
+}
+
+/* Red – $60 */
+.vgt-tag[data-id="angel-60"] {
+  top: 42%;
+  left: 47%;
+}
+
+/* Orange – $90 */
+.vgt-tag[data-id="angel-90"] {
+  top: 34%;
+  left: 63%;
+}
+
+/* Green – $150 */
+.vgt-tag[data-id="angel-150"] {
+  top: 52%;
   left: 37%;
 }
 
-/* Blue ($30) */
-.vgt-tag[data-id="gift-30"] {
-  top: 28%;
-  left: 32%;
+/* Purple – $300 */
+.vgt-tag[data-id="angel-300"] {
+  top: 60%;
+  left: 53%;
 }
 
-/* Red ($60) */
-.vgt-tag[data-id="gift-60"] {
-  top: 40%;
-  left: 45%;
+/* --------------------------------------- */
+/* Details Panel                          */
+/* --------------------------------------- */
+
+.vgt-details-panel {
+  flex: 1 1 320px;
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 24px 24px 20px;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.18);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
-/* Orange ($90) */
-.vgt-tag[data-id="gift-90"] {
-  top: 33%;
-  left: 57%;
+.vgt-details-panel h2 {
+  margin: 0 0 8px;
+  font-size: 1.5rem;
+  line-height: 1.25;
 }
 
-/* Green ($150) */
-.vgt-tag[data-id="gift-150"] {
-  top: 48%;
-  left: 52%;
+.vgt-detail-amount {
+  margin: 0 0 12px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #0f4aa8; /* royal-ish blue */
 }
 
-/* Purple ($300) - stays in best spot */
-.vgt-tag[data-id="gift-300"] {
-  top: 58%;
-  left: 40%;
+.vgt-detail-description {
+  margin: 0 0 20px;
+  line-height: 1.55;
+  font-size: 0.98rem;
+  color: #111827;
+}
+
+/* Donate button */
+.vgt-donate-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 11px 22px;
+  border-radius: 999px;
+  border: none;
+  font-weight: 600;
+  font-size: 0.98rem;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  background: linear-gradient(135deg, #004a98, #2563eb);
+  color: #ffffff;
+  box-shadow: 0 12px 24px rgba(37, 99, 235, 0.4);
+  transition: transform 0.16s ease, box-shadow 0.16s ease, opacity 0.16s ease;
+}
+
+.vgt-donate-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 16px 30px rgba(37, 99, 235, 0.5);
+}
+
+.vgt-donate-button:active {
+  transform: translateY(0);
+  box-shadow: 0 8px 16px rgba(37, 99, 235, 0.35);
+}
+
+.vgt-small-note {
+  margin-top: 14px;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: #4b5563;
+}
+
+/* --------------------------------------- */
+/* Footer                                 */
+/* --------------------------------------- */
+
+.vgt-footer {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 0.8rem;
+  color: #1f2933;
+  opacity: 0.8;
+}
+
+/* --------------------------------------- */
+/* Responsive                             */
+/* --------------------------------------- */
+
+@media (max-width: 900px) {
+  .vgt-main {
+    flex-direction: column;
+  }
+
+  .vgt-tree-panel,
+  .vgt-details-panel {
+    flex: 1 1 auto;
+  }
+
+  .vgt-tree-panel {
+    order: -1;
+  }
+
+  .vgt-details-panel {
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 640px) {
+  .vgt-page {
+    padding: 16px 10px 20px;
+  }
+
+  .vgt-tag img {
+    width: 110px;
+  }
+
+  .vgt-details-panel {
+    padding: 18px 16px 16px;
+  }
+
+  .vgt-details-panel h2 {
+    font-size: 1.25rem;
+  }
 }
