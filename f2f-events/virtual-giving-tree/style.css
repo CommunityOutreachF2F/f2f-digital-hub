@@ -160,7 +160,7 @@ body {
   right: 10%;
   width: 18px;
   height: 18px;
-  background: radial-gradient(circle, #ffffff 0, #ffffff 40%, transparent 60%);
+  background: radial-gradient(circle, #fff7d1 0, #ffe89a 40%, transparent 60%);
   transform: scale(0) rotate(0deg);
   opacity: 0;
   pointer-events: none;
