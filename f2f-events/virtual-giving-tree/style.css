@@ -1,4 +1,4 @@
-/* ====== Base layout & theme ====== */
+/* ====== Tokens / base ====== */
 
 :root {
   --vgt-blue: #0b5ed7;
@@ -22,6 +22,8 @@ body {
   color: var(--vgt-text);
 }
 
+/* ====== Page layout ====== */
+
 .vgt-page {
   min-height: 100vh;
   display: flex;
@@ -31,7 +33,7 @@ body {
   overflow: hidden;
 }
 
-/* ====== Snow overlay (background sparkle only) ====== */
+/* ====== Snow overlay (background snow, not the tag snow art) ====== */
 
 .vgt-snow-layer {
   pointer-events: none;
@@ -51,13 +53,13 @@ body {
     radial-gradient(2px 2px at 40% 80%, rgba(255, 255, 255, 0.75) 0, transparent 55%),
     radial-gradient(3px 3px at 70% 60%, rgba(255, 255, 255, 0.9) 0, transparent 55%);
   background-size: 260px 260px;
-  opacity: 0.55;
+  opacity: 0.45;
   animation: vgt-snow-fall 22s linear infinite;
 }
 
 .vgt-snow-layer::after {
   animation-duration: 32s;
-  opacity: 0.35;
+  opacity: 0.3;
 }
 
 @keyframes vgt-snow-fall {
@@ -69,7 +71,7 @@ body {
 
 .vgt-main {
   position: relative;
-  z-index: 1; /* sit above snow */
+  z-index: 1; /* above snow */
   max-width: 1120px;
   margin: 0 auto;
   display: grid;
@@ -84,13 +86,12 @@ body {
   border-radius: 24px;
   box-shadow: 0 18px 40px rgba(15, 23, 42, 0.22);
   overflow: hidden;
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.9);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* snowy background image behind the tree */
 .vgt-tree-panel::before {
   content: "";
   position: absolute;
@@ -102,7 +103,7 @@ body {
 
 .vgt-tree-image-wrap {
   position: relative;
-  z-index: 1; /* in front of background, behind tags */
+  z-index: 1; /* above panel bg */
   width: min(430px, 80vw);
   aspect-ratio: 3 / 4;
   display: flex;
@@ -117,19 +118,19 @@ body {
   display: block;
 }
 
-/* layer that holds all tags */
+/* ====== Tag layer & positions ====== */
+
 .vgt-tag-layer {
   position: absolute;
-  inset: 4% 18% 8% 18%; /* box around tree body */
+  inset: 6% 16% 10% 16%; /* bounding box around tree body */
 }
 
-/* ====== Angel tags ====== */
+/* Base tag style */
 
 .vgt-tag {
   position: absolute;
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
+  width: 94px;
+  height: 64px;
   padding: 0;
   border: none;
   background: transparent;
@@ -152,85 +153,63 @@ body {
   display: block;
 }
 
-/* amount label over the tag */
-.vgt-amount {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  color: #ffffff;
-  font-weight: 700;
-  font-size: 1rem;
-  letter-spacing: 0.01em;
-  text-shadow:
-    0 1px 2px rgba(0, 0, 0, 0.55),
-    0 0 4px rgba(0, 0, 0, 0.55);
-  pointer-events: none;
+/* No text overlay anymore */
+.vgt-amount,
+.vgt-tag-amount {
+  display: none;
 }
 
-.vgt-tag:hover {
-  filter: brightness(1.05);
-}
+/* Active tag – soft glow, no white ring */
 
 .vgt-tag.vgt-active {
-  transform: translate(-50%, -50%) scale(1.06);
-  box-shadow:
-    0 0 0 4px rgba(255, 255, 255, 0.9),
-    0 10px 20px rgba(15, 23, 42, 0.35);
+  transform: translate(-50%, -50%) scale(1.04);
+  box-shadow: 0 12px 26px rgba(11, 94, 215, 0.6);
+  border-radius: 12px;
 }
 
-/* keyboard focus */
+/* Accessible focus outline (thin, not huge white blob) */
+
 .vgt-tag:focus-visible {
-  outline: 2px solid #ffffff;
+  outline: 2px solid rgba(11, 94, 215, 0.85);
   outline-offset: 3px;
 }
 
-/* ====== Tag positions – more spread out ====== */
+/* ====== Individual tag positions (tuned for your art) ====== */
 
-.vgt-tag-layer {
-  position: absolute;
-  inset: 6% 16% 10% 16%; /* gives us a bit more width on each side of the tree */
-}
-
-/* 1) Pink heart – slight downshift, stays toward upper-left */
+/* Heart – top left-ish but on the tree */
 .vgt-tag[data-id="angel-heart"] {
-  top: 22%;
-  left: 36%;
+  top: 23%;
+  left: 40%;
 }
 
-/* 2) $30 – Angel for One Resident (blue)
-   A bit lower, more left, clearly on its own branch */
+/* $30 – Angel for One Resident (blue) */
 .vgt-tag[data-id="angel-30"] {
-  top: 34%;
-  left: 32%;
-}
-
-/* 3) $60 – Angel for Two Residents (red)
-   Moved down & left-ish to start a gentle diagonal */
-.vgt-tag[data-id="angel-60"] {
-  top: 47%;
+  top: 35%;
   left: 34%;
 }
 
-/* 4) $90 – Angel for Three Residents (orange)
-   SWAPPED general role with red: slightly higher-right mid-tree */
+/* $60 – Angel for Two Residents (red) */
+.vgt-tag[data-id="angel-60"] {
+  top: 47%;
+  left: 33%;
+}
+
+/* $90 – Angel for Three Residents (orange) */
 .vgt-tag[data-id="angel-90"] {
   top: 40%;
-  left: 60%;
+  left: 63%;
 }
 
-/* 5) $150 – Angel for Five Residents (green)
-   Further down & right for a nice flow by amount */
+/* $150 – Angel for Five Residents (green) */
 .vgt-tag[data-id="angel-150"] {
-  top: 54%;
-  left: 61%;
+  top: 53%;
+  left: 63%;
 }
 
-/* 6) $300 – Angel for Ten Residents (purple)
-   You liked this one – keep it lower center-ish */
+/* $300 – Angel for Ten Residents (purple) */
 .vgt-tag[data-id="angel-300"] {
   top: 66%;
-  left: 47%;
+  left: 49%;
 }
 
 /* ====== Details panel ====== */
@@ -251,7 +230,7 @@ body {
   color: var(--vgt-blue);
 }
 
-#vgt-detail-amount {
+.vgt-detail-amount {
   margin: 0 0 6px;
   font-weight: 700;
   color: var(--vgt-green);
@@ -262,11 +241,13 @@ body {
   color: var(--vgt-text);
 }
 
+/* Donate button */
+
 .vgt-donate-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 10px 26px;
+  padding: 11px 28px;
   border-radius: 999px;
   border: none;
   background: var(--vgt-blue);
@@ -275,7 +256,10 @@ body {
   font-size: 0.98rem;
   cursor: pointer;
   box-shadow: 0 12px 26px rgba(11, 94, 215, 0.45);
-  transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+  transition:
+    transform 0.12s ease,
+    box-shadow 0.12s ease,
+    background 0.12s ease;
 }
 
 .vgt-donate-button:hover {
@@ -319,6 +303,11 @@ body {
   }
 
   .vgt-tree-image-wrap {
-    width: min(360px, 90vw);
+    width: min(380px, 90vw);
+  }
+
+  .vgt-tag {
+    width: 86px;
+    height: 58px;
   }
 }
