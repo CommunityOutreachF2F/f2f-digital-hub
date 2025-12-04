@@ -1,110 +1,103 @@
-// ====== Angel tag configuration ======
-
-const TAG_CONFIG = {
-  "angel-heart": {
+// Simple config for each angel tag
+const TAGS = {
+  "custom-heart": {
     title: "Give from the Heart",
-    amount: "Custom amount",
-    description:
-      "Choose any amount that feels right. We’ll combine your gift with others to fully cover as many Angel Gift Lists as possible, making sure every resident has something special waiting for them this Christmas."
+    amountLabel: "",
+    blurb:
+      "Choose any amount that fits your budget. We’ll combine your gift with others to fully cover as many Angel Gift Lists as possible and make sure every resident feels remembered.",
+    // TODO: put your Qgiv custom-amount link here:
+    url: "https://www.qgiv.com" // placeholder
   },
   "angel-30": {
     title: "Angel for One Resident",
-    amount: "Suggested gift: $30",
-    description:
-      "Helps provide an Angel Gift for one resident in our recovery housing programs. This might include a clothing item (like a hoodie, shoes, or pajamas), a small self-care item, and a treat or gift card chosen from their wish list."
+    amountLabel: "Suggested gift: $30",
+    blurb:
+      "Helps cover one resident’s Angel Gift List — often a clothing item like a hoodie, shoes, or pajamas, plus a small treat or gift card chosen just for them.",
+    url: "https://www.qgiv.com" // placeholder
   },
   "angel-60": {
     title: "Angel for Two Residents",
-    amount: "Suggested gift: $60",
-    description:
-      "Helps provide Angel Gifts for two residents. Your gift helps us shop for clothing, self-care items, and gift cards so that more people in our programs feel remembered and cared for this Christmas."
+    amountLabel: "Suggested gift: $60",
+    blurb:
+      "Helps cover Angel Gift Lists for two residents. This might mean two clothing items, or a mix of shoes, self-care items, and gift cards so each person feels seen.",
+    url: "https://www.qgiv.com" // placeholder
   },
   "angel-90": {
     title: "Angel for Three Residents",
-    amount: "Suggested gift: $90",
-    description:
-      "Helps provide Angel Gifts for three residents, filling their bags with a mix of clothing, comfort items, and small extras that bring joy during a hard season of life."
+    amountLabel: "Suggested gift: $90",
+    blurb:
+      "Helps cover Angel Gift Lists for three residents, filling their bags with a mix of clothing, self-care, and small extras that bring comfort and joy during a hard season.",
+    url: "https://www.qgiv.com" // placeholder
   },
   "angel-150": {
     title: "Angel for Five Residents",
-    amount: "Suggested gift: $150",
-    description:
-      "Helps provide Angel Gifts for five residents in our recovery housing programs — a great level for families or small groups who want to make a meaningful impact together."
+    amountLabel: "Suggested gift: $150",
+    blurb:
+      "Helps provide Angel Gifts for five residents in our recovery housing programs — a great level for families or small groups who want to make a big impact together.",
+    url: "https://www.qgiv.com" // placeholder
   },
   "angel-300": {
     title: "Angel for Ten Residents",
-    amount: "Suggested gift: $300",
-    description:
-      "Helps provide Angel Gifts for ten residents. This is an ideal level for businesses, churches, or community groups who want to wrap many people in encouragement, warmth, and practical support."
+    amountLabel: "Suggested gift: $300",
+    blurb:
+      "Helps provide Angel Gifts for ten residents. This is a powerful choice for churches, businesses, or clubs who want to surround our community with hope and support.",
+    url: "https://www.qgiv.com" // placeholder
   }
 };
 
-// If you have a single Qgiv form URL, put it here once.
-const DONATION_URL = "https://www.qgiv.com/"; // <-- replace with your real Qgiv form URL
+document.addEventListener("DOMContentLoaded", () => {
+  const tagButtons = Array.from(document.querySelectorAll(".vgt-tag"));
+  const titleEl = document.getElementById("vgt-detail-title");
+  const amountEl = document.getElementById("vgt-detail-amount");
+  const descEl = document.getElementById("vgt-detail-description");
+  const donateBtn = document.getElementById("vgt-donate-button");
+  const sound = document.getElementById("tagSound");
 
-// ====== DOM references ======
+  let activeId = "angel-150"; // default selection (you can change if you want)
 
-const tagButtons = Array.from(document.querySelectorAll(".vgt-tag"));
-const titleEl = document.getElementById("vgt-detail-title");
-const amountEl = document.getElementById("vgt-detail-amount");
-const descEl = document.getElementById("vgt-detail-description");
-const donateBtn = document.getElementById("vgt-donate-button");
-const soundEl = document.getElementById("tagSound");
+  function applyState(id) {
+    const cfg = TAGS[id];
+    if (!cfg) return;
 
-// ====== Helpers ======
+    activeId = id;
 
-function setInitialState() {
-  titleEl.textContent = "Choose a tag to see your impact";
-  amountEl.textContent = "";
-  descEl.textContent =
-    "Tap an angel tag on the tree to choose how many residents you’d like to bless this Christmas. Each $30 Angel Gift helps our “F2F elves” shop for one person’s wish list with care.";
-  donateBtn.onclick = () => {
-    if (DONATION_URL) {
-      window.open(DONATION_URL, "_blank");
-    }
-  };
-}
+    // Toggle active class for glow
+    tagButtons.forEach(btn => {
+      btn.classList.toggle(
+        "vgt-tag--active",
+        btn.getAttribute("data-id") === id
+      );
+    });
 
-function activateTag(tagId) {
-  const config = TAG_CONFIG[tagId];
-  if (!config) return;
+    // Update text content
+    titleEl.textContent = cfg.title;
+    amountEl.textContent = cfg.amountLabel || "";
+    descEl.textContent = cfg.blurb;
 
-  // visual state
-  tagButtons.forEach(btn =>
-    btn.classList.toggle("vgt-active", btn.dataset.id === tagId)
-  );
-
-  // text content
-  titleEl.textContent = config.title;
-  amountEl.textContent = config.amount;
-  descEl.textContent = config.description;
-
-  // donate button action
-  donateBtn.onclick = () => {
-    if (!DONATION_URL) return;
-    // If later you add per-level URLs or query params, you can switch on tagId here.
-    window.open(DONATION_URL, "_blank");
-  };
-
-  // chime
-  if (soundEl) {
-    try {
-      soundEl.currentTime = 0;
-      soundEl.play().catch(() => {});
-    } catch (e) {
-      // ignore audio errors silently
-    }
+    // Wire button
+    donateBtn.onclick = () => {
+      if (cfg.url) {
+        window.open(cfg.url, "_blank");
+      }
+    };
   }
-}
 
-// ====== Event wiring ======
+  // Attach handlers
+  tagButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const id = btn.getAttribute("data-id");
+      applyState(id);
 
-tagButtons.forEach(btn => {
-  btn.addEventListener("click", () => {
-    const id = btn.dataset.id;
-    activateTag(id);
+      // play chime (ignore errors if user hasn't interacted yet, etc.)
+      try {
+        if (sound) sound.currentTime = 0;
+        if (sound) sound.play();
+      } catch (e) {
+        // no-op
+      }
+    });
   });
-});
 
-// Initialize
-setInitialState();
+  // Initialize default state
+  applyState(activeId);
+});
