@@ -1,109 +1,309 @@
-// ====== Angel tag configuration ======
+/* ====== Tokens / base ====== */
 
-const TAG_CONFIG = {
-  "angel-heart": {
-    title: "Give from the Heart",
-    amount: "Custom amount",
-    description:
-      "Choose any amount that feels right. We’ll combine your gift with others to fully cover as many Angel Gift Lists as possible, making sure every resident has something special waiting for them this Christmas."
-  },
-  "angel-30": {
-    title: "Angel for One Resident",
-    amount: "Suggested gift: $30",
-    description:
-      "Helps provide an Angel Gift for one resident in our recovery housing programs. This might include a clothing item (like a hoodie, shoes, or pajamas), a small self-care item, and a treat or gift card chosen from their wish list."
-  },
-  "angel-60": {
-    title: "Angel for Two Residents",
-    amount: "Suggested gift: $60",
-    description:
-      "Helps provide Angel Gifts for two residents. Your gift helps us shop for clothing, self-care items, and gift cards so that more people in our programs feel remembered and cared for this Christmas."
-  },
-  "angel-90": {
-    title: "Angel for Three Residents",
-    amount: "Suggested gift: $90",
-    description:
-      "Helps provide Angel Gifts for three residents, filling their bags with a mix of clothing, comfort items, and small extras that bring joy during a hard season of life."
-  },
-  "angel-150": {
-    title: "Angel for Five Residents",
-    amount: "Suggested gift: $150",
-    description:
-      "Helps provide Angel Gifts for five residents in our recovery housing programs — a great level for families or small groups who want to make a meaningful impact together."
-  },
-  "angel-300": {
-    title: "Angel for Ten Residents",
-    amount: "Suggested gift: $300",
-    description:
-      "Helps provide Angel Gifts for ten residents. This is an ideal level for businesses, churches, or community groups who want to wrap many people in encouragement, warmth, and practical support."
-  }
-};
-
-// TODO: replace this with your real Qgiv form URL
-const DONATION_URL = "https://www.qgiv.com/"; // <--- your real link here
-
-// ====== DOM references ======
-
-const tagButtons = Array.from(document.querySelectorAll(".vgt-tag"));
-const titleEl = document.getElementById("vgt-detail-title");
-const amountEl = document.getElementById("vgt-detail-amount");
-const descEl = document.getElementById("vgt-detail-description");
-const donateBtn = document.getElementById("vgt-donate-button");
-const soundEl = document.getElementById("tagSound");
-
-// ====== Helpers ======
-
-function setInitialState() {
-  titleEl.textContent = "Choose a tag to see your impact";
-  amountEl.textContent = "";
-  descEl.textContent =
-    "Tap an angel tag on the tree to choose how many residents you’d like to bless this Christmas. Each $30 Angel Gift helps our “F2F elves” shop for one person’s wish list with care.";
-  donateBtn.onclick = () => {
-    if (DONATION_URL) {
-      window.open(DONATION_URL, "_blank");
-    }
-  };
+:root {
+  --vgt-blue: #0b5ed7;
+  --vgt-green: #1c7c4d;
+  --vgt-bg: #e8f1ff;
+  --vgt-card-bg: #ffffff;
+  --vgt-text: #1e2733;
+  --vgt-muted: #5c6674;
 }
 
-function activateTag(tagId) {
-  const config = TAG_CONFIG[tagId];
-  if (!config) return;
-
-  // visual state
-  tagButtons.forEach(btn =>
-    btn.classList.toggle("vgt-tag--active", btn.dataset.id === tagId)
-  );
-
-  // text content
-  titleEl.textContent = config.title;
-  amountEl.textContent = config.amount;
-  descEl.textContent = config.description;
-
-  // donate button
-  donateBtn.onclick = () => {
-    if (!DONATION_URL) return;
-    window.open(DONATION_URL, "_blank");
-  };
-
-  // chime
-  if (soundEl) {
-    try {
-      soundEl.currentTime = 0;
-      soundEl.play().catch(() => {});
-    } catch (e) {
-      // ignore audio errors
-    }
-  }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-// ====== Event wiring ======
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: radial-gradient(circle at top, #e8f2ff, #d8e4ff);
+  color: var(--vgt-text);
+}
 
-tagButtons.forEach(btn => {
-  btn.addEventListener("click", () => {
-    const id = btn.dataset.id;
-    activateTag(id);
-  });
-});
+/* ====== Page layout ====== */
 
-// Init
-setInitialState();
+.vgt-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 32px 16px 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ====== Snow overlay ====== */
+
+.vgt-snow-layer {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+}
+
+.vgt-snow-layer::before,
+.vgt-snow-layer::after {
+  content: "";
+  position: absolute;
+  inset: -100px;
+  background-image:
+    radial-gradient(3px 3px at 20% 20%, rgba(255, 255, 255, 0.9) 0, transparent 55%),
+    radial-gradient(2px 2px at 80% 30%, rgba(255, 255, 255, 0.8) 0, transparent 55%),
+    radial-gradient(2px 2px at 40% 80%, rgba(255, 255, 255, 0.75) 0, transparent 55%),
+    radial-gradient(3px 3px at 70% 60%, rgba(255, 255, 255, 0.9) 0, transparent 55%);
+  background-size: 260px 260px;
+  opacity: 0.45;
+  animation: vgt-snow-fall 22s linear infinite;
+}
+
+.vgt-snow-layer::after {
+  animation-duration: 32s;
+  opacity: 0.3;
+}
+
+@keyframes vgt-snow-fall {
+  from { transform: translate3d(0, -80px, 0); }
+  to   { transform: translate3d(0, 120px, 0); }
+}
+
+/* ====== Main layout ====== */
+
+.vgt-main {
+  position: relative;
+  z-index: 1;
+  max-width: 1120px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: 24px;
+}
+
+/* ====== Tree panel ====== */
+
+.vgt-tree-panel {
+  position: relative;
+  border-radius: 24px;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.22);
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vgt-tree-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("background.png") center/cover no-repeat;
+  opacity: 1;
+  z-index: 0;
+}
+
+.vgt-tree-image-wrap {
+  position: relative;
+  z-index: 1;
+  width: min(430px, 80vw);
+  aspect-ratio: 3 / 4;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.vgt-tree-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* ====== Tag layer & positions ====== */
+
+.vgt-tag-layer {
+  position: absolute;
+  inset: 6% 14% 10% 14%; /* bounding box around tree body */
+}
+
+/* Base tag style */
+
+.vgt-tag {
+  position: absolute;
+  width: 96px;
+  height: 66px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+  outline: none;
+  transition:
+    transform 0.12s ease,
+    filter 0.12s ease;
+}
+
+.vgt-tag img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* No dollar overlay text any more */
+.vgt-amount,
+.vgt-tag-amount {
+  display: none;
+}
+
+/* Active tag – soft glow, NO white ring */
+.vgt-tag--active {
+  transform: translate(-50%, -50%) scale(1.04);
+  filter: drop-shadow(0 10px 20px rgba(15, 23, 42, 0.4));
+}
+
+/* Accessible keyboard focus outline */
+.vgt-tag:focus-visible {
+  outline: 2px solid rgba(11, 94, 215, 0.9);
+  outline-offset: 3px;
+}
+
+/* ====== Individual tag positions (spread out more) ====== */
+
+/* Heart – upper left */
+.vgt-tag[data-id="angel-heart"] {
+  top: 24%;
+  left: 36%;
+}
+
+/* $30 – One Resident (blue) */
+.vgt-tag[data-id="angel-30"] {
+  top: 36%;
+  left: 30%;
+}
+
+/* $60 – Two Residents (red) */
+.vgt-tag[data-id="angel-60"] {
+  top: 51%;
+  left: 29%;
+}
+
+/* $90 – Three Residents (orange) */
+.vgt-tag[data-id="angel-90"] {
+  top: 38%;
+  left: 66%;
+}
+
+/* $150 – Five Residents (green) */
+.vgt-tag[data-id="angel-150"] {
+  top: 52%;
+  left: 64%;
+}
+
+/* $300 – Ten Residents (purple) */
+.vgt-tag[data-id="angel-300"] {
+  top: 66%;
+  left: 49%;
+}
+
+/* ====== Details panel ====== */
+
+.vgt-details-panel {
+  border-radius: 24px;
+  background: var(--vgt-card-bg);
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.18);
+  padding: 28px 28px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.vgt-details-panel h1,
+.vgt-details-panel h2 {
+  margin: 0 0 4px;
+  color: var(--vgt-blue);
+}
+
+.vgt-detail-amount {
+  margin: 0 0 6px;
+  font-weight: 700;
+  color: var(--vgt-green); /* this is the green subheading */
+}
+
+.vgt-detail-description {
+  margin: 0 0 14px;
+  color: var(--vgt-text);
+}
+
+/* Donate button */
+
+.vgt-donate-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 11px 28px;
+  border-radius: 999px;
+  border: none;
+  background: var(--vgt-blue);
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.98rem;
+  cursor: pointer;
+  box-shadow: 0 12px 26px rgba(11, 94, 215, 0.45);
+  transition:
+    transform 0.12s ease,
+    box-shadow 0.12s ease,
+    background 0.12s ease;
+}
+
+.vgt-donate-button:hover {
+  background: #094ab0;
+  transform: translateY(-1px);
+  box-shadow: 0 16px 32px rgba(11, 94, 215, 0.55);
+}
+
+.vgt-small-note {
+  margin-top: 10px;
+  font-size: 0.86rem;
+  color: var(--vgt-muted);
+}
+
+/* ====== Footer ====== */
+
+.vgt-footer {
+  margin-top: 18px;
+  text-align: center;
+  font-size: 0.82rem;
+  color: var(--vgt-muted);
+}
+
+/* ====== Responsive ====== */
+
+@media (max-width: 900px) {
+  .vgt-main {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .vgt-tree-panel,
+  .vgt-details-panel {
+    max-width: 560px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .vgt-page {
+    padding: 20px 10px 18px;
+  }
+
+  .vgt-tree-image-wrap {
+    width: min(380px, 90vw);
+  }
+
+  .vgt-tag {
+    width: 88px;
+    height: 60px;
+  }
+}
