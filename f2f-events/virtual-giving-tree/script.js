@@ -107,15 +107,21 @@ document.addEventListener("DOMContentLoaded", () => {
         // no-op
       }
 
-      // After a short delay (let sparkle start), open the Qgiv link for that tag
-      if (cfg && cfg.url) {
-        setTimeout(() => {
-         window.open(cfg.url, "_blank");
-        }, 400); // 0.4s to let the sparkle be visible
+// After a short delay (let sparkle start), go to the Qgiv link for that tag
+if (cfg && cfg.url) {
+  setTimeout(() => {
+    try {
+      if (window.top && window.top !== window.self) {
+        // We are inside an iframe (like on Qgiv) → navigate the whole page
+        window.top.location.href = cfg.url;
+      } else {
+        // Standalone page (GitHub preview, etc.) → open in a new tab
+        window.open(cfg.url, "_blank");
       }
-    });
-  });
-
-  // Initialize default state
-  applyState(activeId);
-});
+    } catch (e) {
+      // If anything weird happens, fall back to same-tab navigation
+      window.location.href = cfg.url;
+    }
+  }, 400); // 0.4s so the sparkle + chime are noticeable
+}
+);
