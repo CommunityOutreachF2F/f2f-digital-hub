@@ -30,31 +30,31 @@ body {
   padding: 24px 16px;
   background: radial-gradient(circle at top, #e0f2ff 0, #f8fafc 55%, #e5e7eb 100%);
 }
-/* Embedded mode: when the page is inside an iframe (like on Qgiv) */
+
+/* Embedded mode (inside Qgiv iframe): keep things clean and flat */
 html.vgt-embedded,
 html.vgt-embedded body {
-  height: 100%;
   margin: 0;
-  background: #e5e7eb; /* soft grey that matches the card shadow area */
+  background: transparent;  /* let the iframe itself show through */
 }
 
 html.vgt-embedded .vgt-page {
-  min-height: auto;      /* <— key change */
-  height: auto;          /* just to be explicit */
+  background: #ffffff;      /* no gradient, just white */
+  min-height: auto;
+  height: auto;
   justify-content: flex-start;
   padding: 8px 8px 8px;
 }
 
-/* tighten space between main content + footer */
+/* keep it compact */
 html.vgt-embedded .vgt-main {
-  /* balance top/bottom padding of the big light-grey card */
-  padding: 16px 16px 12px;
+  margin-bottom: 4px;
 }
 
-/* OPTION: hide the tiny footer in embedded mode to save vertical space */
 html.vgt-embedded .vgt-footer {
-  display: none;
+  display: none;            /* optional, but saves vertical space */
 }
+
 
 /* Main content: tree (left) + details (right) */
 .vgt-main {
