@@ -30,21 +30,14 @@ body {
   background: radial-gradient(circle at top, #e0f2ff 0, #f8fafc 55%, #e5e7eb 100%);
 }
 
-/* Embedded mode (inside Qgiv iframe): keep things clean and flat */
-html.vgt-embedded,
-html.vgt-embedded body {
-  margin: 0;
-  background: transparent;
-  height: auto !important;     /* <— key line */
-  min-height: 0 !important;    /* extra safety */
-}
-
+/* 🔧 Hard override for embedded / iframe mode */
+html.vgt-embedded body,
 html.vgt-embedded .vgt-page {
-  background: #ffffff;      /* no gradient, just white */
-  min-height: auto;
-  height: auto;
-  justify-content: flex-start;
-  padding: 8px 8px 8px;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  height: auto !important;
+  min-height: 0 !important;
 }
 
 /* keep it compact */
