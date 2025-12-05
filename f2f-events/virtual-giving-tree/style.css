@@ -39,9 +39,10 @@ html.vgt-embedded body {
 }
 
 html.vgt-embedded .vgt-page {
-  min-height: 100%;
+  min-height: auto;      /* <— key change */
+  height: auto;          /* just to be explicit */
   justify-content: flex-start;
-  padding: 4px 4px 0;   /* even tighter padding */
+  padding: 8px 8px 8px;
 }
 
 /* tighten space between main content + footer */
