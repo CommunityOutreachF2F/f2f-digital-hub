@@ -110,7 +110,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // After a short delay (let sparkle start), open the Qgiv link for that tag
       if (cfg && cfg.url) {
         setTimeout(() => {
-          window.open(cfg.url, "_blank"); // opens in new tab
+         window.location.href = cfg.url;
         }, 400); // 0.4s to let the sparkle be visible
       }
     });
