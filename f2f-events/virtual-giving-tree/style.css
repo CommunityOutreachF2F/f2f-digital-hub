@@ -22,7 +22,7 @@ body {
 
 /* Page wrapper */
 .vgt-page {
-  min-height: 100vh;
+  /* min-height: 100vh;   <-- get rid of this line */
   display: flex;
   flex-direction: column;
   justify-content: center;
