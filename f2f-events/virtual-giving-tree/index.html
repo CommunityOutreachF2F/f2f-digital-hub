@@ -94,5 +94,13 @@
   <!-- Angel tag chime -->
   <audio id="tagSound" src="angel-chime.mp3" preload="auto"></audio>
   <script src="script.js"></script>
+
+  <script>
+  // If this page is loaded inside an iframe (like on Qgiv),
+  // add a class to switch to compact layout.
+  if (window.self !== window.top) {
+    document.documentElement.classList.add("vgt-embedded");
+  }
+</script>
 </body>
 </html>
