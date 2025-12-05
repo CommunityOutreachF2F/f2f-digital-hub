@@ -35,7 +35,9 @@ body {
 html.vgt-embedded,
 html.vgt-embedded body {
   margin: 0;
-  background: transparent;  /* let the iframe itself show through */
+  background: transparent;
+  height: auto !important;     /* <— key line */
+  min-height: 0 !important;    /* extra safety */
 }
 
 html.vgt-embedded .vgt-page {
