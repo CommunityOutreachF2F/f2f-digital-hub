@@ -12,7 +12,8 @@ html,
 body {
   margin: 0;
   padding: 0;
-  height: 100%;
+  /* let content define the height instead of forcing full iframe height */
+  min-height: 100%;
 }
 
 body {
