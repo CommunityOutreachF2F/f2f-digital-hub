@@ -30,6 +30,16 @@ body {
   padding: 24px 16px;
   background: radial-gradient(circle at top, #e0f2ff 0, #f8fafc 55%, #e5e7eb 100%);
 }
+/* When this page is embedded in an iframe (Qgiv), use compact layout */
+html.vgt-embedded .vgt-page {
+  min-height: 0;
+  justify-content: flex-start;
+  padding: 12px 12px 8px;
+}
+
+html.vgt-embedded .vgt-footer {
+  margin-top: 8px;
+}
 /* Main content: tree (left) + details (right) */
 .vgt-main {
   max-width: 1120px;
