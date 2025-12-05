@@ -397,3 +397,6 @@ html.vgt-embedded .vgt-footer {
     font-size: 1.25rem;
   }
 }
+.vgt-page {
+  outline: 3px dashed lime !important;
+}
