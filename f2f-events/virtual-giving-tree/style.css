@@ -30,16 +30,29 @@ body {
   padding: 24px 16px;
   background: radial-gradient(circle at top, #e0f2ff 0, #f8fafc 55%, #e5e7eb 100%);
 }
-/* When this page is embedded in an iframe (Qgiv), use compact layout */
+/* Embedded mode: when the page is inside an iframe (like on Qgiv) */
+html.vgt-embedded,
+html.vgt-embedded body {
+  height: 100%;
+  margin: 0;
+  background: #e5e7eb; /* match the bottom of the gradient so extra space isn't stark white */
+}
+
 html.vgt-embedded .vgt-page {
-  min-height: 0;
+  min-height: 100%;          /* fill the iframe height */
   justify-content: flex-start;
-  padding: 12px 12px 8px;
+  padding: 8px 8px 4px;      /* smaller top/bottom padding inside iframe */
+}
+
+html.vgt-embedded .vgt-main {
+  margin-bottom: 4px;        /* trim extra gap before footer */
 }
 
 html.vgt-embedded .vgt-footer {
-  margin-top: 8px;
+  margin-top: 4px;
+  padding-bottom: 4px;
 }
+
 /* Main content: tree (left) + details (right) */
 .vgt-main {
   max-width: 1120px;
