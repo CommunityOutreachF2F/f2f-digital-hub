@@ -13,35 +13,35 @@ const TAGS = {
     amountLabel: "Suggested gift: $30",
     blurb:
       "Helps cover one resident’s Angel Gift List — often a clothing item like a hoodie, shoes, or pajamas, plus a small treat or gift card chosen just for them.",
-    url: "https://secure.qgiv.com/for/virtualgivingtree/" // placeholder
+    url: "https://secure.qgiv.com/for/virtualgivingtree/amount/1710557/onetime" // placeholder
   },
   "angel-60": {
     title: "Angel for Two Residents",
     amountLabel: "Suggested gift: $60",
     blurb:
       "Helps cover Angel Gift Lists for two residents. This might mean two clothing items, or a mix of shoes, self-care items, and gift cards so each person feels seen.",
-    url: "https://secure.qgiv.com/for/virtualgivingtree/" // placeholder
+    url: "https://secure.qgiv.com/for/virtualgivingtree/amount/1710558/onetime" // placeholder
   },
   "angel-90": {
     title: "Angel for Three Residents",
     amountLabel: "Suggested gift: $90",
     blurb:
       "Helps cover Angel Gift Lists for three residents, filling their bags with a mix of clothing, self-care, and small extras that bring comfort and joy during a hard season.",
-    url: "https://secure.qgiv.com/for/virtualgivingtree/" // placeholder
+    url: "https://secure.qgiv.com/for/virtualgivingtree/amount/1710559/onetime" // placeholder
   },
   "angel-150": {
     title: "Angel for Five Residents",
     amountLabel: "Suggested gift: $150",
     blurb:
       "Helps provide Angel Gifts for five residents in our recovery housing programs — a great level for families or small groups who want to make a big impact together.",
-    url: "https://secure.qgiv.com/for/virtualgivingtree/" // placeholder
+    url: "https://secure.qgiv.com/for/virtualgivingtree/amount/1710560/onetime" // placeholder
   },
   "angel-300": {
     title: "Angel for Ten Residents",
     amountLabel: "Suggested gift: $300",
     blurb:
       "Helps provide Angel Gifts for ten residents. This is a powerful choice for churches, businesses, or clubs who want to surround our community with hope and support.",
-    url: "https://secure.qgiv.com/for/virtualgivingtree/" // placeholder
+    url: "https://secure.qgiv.com/for/virtualgivingtree/amount/1710562/onetime" // placeholder
   }
 };
 
