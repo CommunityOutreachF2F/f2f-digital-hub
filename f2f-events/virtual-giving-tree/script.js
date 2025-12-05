@@ -1,11 +1,11 @@
 // Simple config for each angel tag
+// (URLs kept here in case you ever want to use them again, but not used right now)
 const TAGS = {
   "custom-heart": {
     title: "Give from the Heart",
     amountLabel: "",
     blurb:
       "Choose any amount that fits your budget. We’ll combine your gift with others to fully cover as many Angel Gift Lists as possible and make sure every resident feels remembered.",
-    // main page – custom amount lives here
     url: "https://secure.qgiv.com/for/virtualgivingtree/"
   },
   "angel-30": {
@@ -51,6 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const amountEl = document.getElementById("vgt-detail-amount");
   const descEl = document.getElementById("vgt-detail-description");
   const sound = document.getElementById("tagSound");
+  const scrollTarget = document.getElementById("vgt-scroll-target");
 
   if (sound) {
     sound.volume = 0.75; // tweak between 0.5 and 1.0 if needed
@@ -82,7 +83,6 @@ document.addEventListener("DOMContentLoaded", () => {
   tagButtons.forEach(btn => {
     btn.addEventListener("click", () => {
       const id = btn.getAttribute("data-id");
-      const cfg = TAGS[id];
       applyState(id);
 
       // sparkle burst on the clicked tag
@@ -101,22 +101,14 @@ document.addEventListener("DOMContentLoaded", () => {
         // no-op
       }
 
-      // After a short delay (let sparkle start), go to the Qgiv link for that tag
-      if (cfg && cfg.url) {
+      // Smooth scroll down to the details panel inside the widget
+      if (scrollTarget) {
         setTimeout(() => {
-          try {
-            // If we're inside an iframe (Qgiv embed), navigate the TOP window
-            if (window.top && window.top !== window.self) {
-              window.top.location.href = cfg.url;
-            } else {
-              // Standalone (GitHub preview, etc.) – open in a new tab
-              window.open(cfg.url, "_blank");
-            }
-          } catch (e) {
-            // Fallback: same-window navigation
-            window.location.href = cfg.url;
-          }
-        }, 400); // 0.4s so the sparkle + chime are noticeable
+          scrollTarget.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+          });
+        }, 300); // let sparkle + chime start before scrolling
       }
     });
   });
