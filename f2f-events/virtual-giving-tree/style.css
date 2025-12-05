@@ -35,22 +35,23 @@ html.vgt-embedded,
 html.vgt-embedded body {
   height: 100%;
   margin: 0;
-  background: #e5e7eb; /* match the bottom of the gradient so extra space isn't stark white */
+  background: #e5e7eb; /* soft grey that matches the card shadow area */
 }
 
 html.vgt-embedded .vgt-page {
-  min-height: 100%;          /* fill the iframe height */
+  min-height: 100%;
   justify-content: flex-start;
-  padding: 8px 8px 4px;      /* smaller top/bottom padding inside iframe */
+  padding: 4px 4px 0;   /* even tighter padding */
 }
 
+/* tighten space between main content + footer */
 html.vgt-embedded .vgt-main {
-  margin-bottom: 4px;        /* trim extra gap before footer */
+  margin-bottom: 0;
 }
 
+/* OPTION: hide the tiny footer in embedded mode to save vertical space */
 html.vgt-embedded .vgt-footer {
-  margin-top: 4px;
-  padding-bottom: 4px;
+  display: none;
 }
 
 /* Main content: tree (left) + details (right) */
