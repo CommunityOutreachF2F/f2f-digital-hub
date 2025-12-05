@@ -46,7 +46,8 @@ html.vgt-embedded .vgt-page {
 
 /* tighten space between main content + footer */
 html.vgt-embedded .vgt-main {
-  margin-bottom: 0;
+  /* balance top/bottom padding of the big light-grey card */
+  padding: 16px 16px 12px;
 }
 
 /* OPTION: hide the tiny footer in embedded mode to save vertical space */
