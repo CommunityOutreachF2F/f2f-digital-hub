@@ -23,14 +23,17 @@ body {
 
 /* Page wrapper */
 .vgt-page {
-  min-height: 100vh;
+  /* no more “full viewport” height */
+  min-height: 0;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  padding: 24px 16px;
+  justify-content: flex-start;
+
+  /* trim padding so it hugs tighter in the iframe */
+  padding: 12px 12px 8px;
+
   background: radial-gradient(circle at top, #e0f2ff 0, #f8fafc 55%, #e5e7eb 100%);
 }
-
 /* Main content: tree (left) + details (right) */
 .vgt-main {
   max-width: 1120px;
