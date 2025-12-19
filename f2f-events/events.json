@@ -1,0 +1,31 @@
+{
+  "meta": {
+    "generated": "2025-12-19"
+  },
+  "events": [
+    {
+      "id": "2026-havana-nights",
+      "name": "2026 Havana Nights",
+      "type": "qgiv",
+      "status": "active",
+      "path": "f2f-events/2026-havana-nights/",
+      "meta": "f2f-events/2026-havana-nights/meta.json"
+    },
+    {
+      "id": "virtual-giving-tree",
+      "name": "Virtual Giving Tree",
+      "type": "landing-page",
+      "status": "active",
+      "path": "f2f-events/virtual-giving-tree/",
+      "meta": "f2f-events/virtual-giving-tree/meta.json"
+    },
+    {
+      "id": "template-event",
+      "name": "Template Event",
+      "type": "template",
+      "status": "template",
+      "path": "f2f-events/TEMPLATE-next-event/",
+      "meta": "f2f-events/TEMPLATE-next-event/meta.json"
+    }
+  ]
+}
