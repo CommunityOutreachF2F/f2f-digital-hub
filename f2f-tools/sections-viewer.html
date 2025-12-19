@@ -109,12 +109,22 @@
 <script>
 window.addEventListener('DOMContentLoaded', () => {
   // --- Configure events here as you add new folders ---
-  const EVENTS = [
-    { slug: 'virtual-giving-tree', label: 'Virtual Giving Tree' },
-    { slug: '2026-havana-nights', label: '2026 – Havana Nights Gala' }
-    // Example future event:
-    // { slug: '2027-spring-fundraiser', label: '2027 – Spring Fundraiser' }
-  ];
+const EVENTS_REGISTRY_URL = "../f2f-events/events.json";
+
+async function loadEventsRegistry() {
+  const res = await fetch(EVENTS_REGISTRY_URL, { cache: "no-store" });
+  if (!res.ok) throw new Error("Could not load events.json → " + res.status);
+  const data = await res.json();
+
+  // Convert registry format to your existing expected format
+  // Your script expects: { slug, label }
+  return (data.events || [])
+    .filter(e => e.status !== "template")
+    .map(e => ({
+      slug: e.id,
+      label: e.name
+    }));
+}
 
   const wrap       = document.getElementById('wrap');
   const msgBox     = document.getElementById('message');
@@ -123,7 +133,8 @@ window.addEventListener('DOMContentLoaded', () => {
   const searchBox  = document.getElementById('searchBox');
   const searchCount= document.getElementById('searchCount');
 
-  let currentSlug  = EVENTS[0]?.slug || null;
+  let currentSlug = null;
+let EVENTS = [];
   let sectionsData = [];  // {file, html, element}
 
   // Populate event dropdown
@@ -291,22 +302,48 @@ window.addEventListener('DOMContentLoaded', () => {
   });
 
   eventSel.addEventListener('change', () => {
-    loadEvent(eventSel.value);
-  });
+  const slug = eventSel.value;
+
+  // Save last event
+  localStorage.setItem("f2f_last_event", slug);
+
+  // Update URL (shareable)
+  const url = new URL(window.location.href);
+  url.searchParams.set("event", slug);
+  window.history.replaceState({}, "", url);
+
+  loadEvent(slug);
+});
 
   searchBox.addEventListener('input', () => {
     applySearchFilter();
   });
 
-  // Initial setup & load
-  initEventSelect();
-  if (currentSlug) {
+// Initial setup & load
+(async () => {
+  try {
+    EVENTS = await loadEventsRegistry();
+
+    if (!EVENTS.length) {
+      showMessage('No events found in f2f-events/events.json.');
+      return;
+    }
+
+    // Use URL param if present, else last used, else first event
+    const urlEvent = new URLSearchParams(window.location.search).get("event");
+    const lastEvent = localStorage.getItem("f2f_last_event");
+
+    currentSlug = urlEvent || lastEvent || EVENTS[0].slug;
+
+    initEventSelect();
     eventSel.value = currentSlug;
-    loadEvent(currentSlug);
-  } else {
-    showMessage('No events configured. Please add at least one entry to the EVENTS array in sections-viewer.html.');
+
+    await loadEvent(currentSlug);
+  } catch (e) {
+    console.error(e);
+    showMessage('Error loading events registry: ' + e.message);
   }
-});
+})();
 </script>
 </body>
 </html>
