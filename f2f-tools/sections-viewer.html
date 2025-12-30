@@ -108,45 +108,33 @@
 
 <script>
 window.addEventListener('DOMContentLoaded', () => {
-  // --- Configure events here as you add new folders ---
-const EVENTS_REGISTRY_URL = "../f2f-events/events.json";
+  const EVENTS_REGISTRY_URL = "../f2f-events/events.json";
 
-async function loadEventsRegistry() {
-  const res = await fetch(EVENTS_REGISTRY_URL, { cache: "no-store" });
-  if (!res.ok) throw new Error("Could not load events.json → " + res.status);
-  const data = await res.json();
+  // Fallback in case events.json is missing
+  const FALLBACK_EVENTS = [
+    { slug: "virtual-giving-tree", label: "Virtual Giving Tree" },
+    { slug: "2026-havana-nights", label: "2026 – Havana Nights Gala" }
+  ];
 
-  // Convert registry format to your existing expected format
-  // Your script expects: { slug, label }
-  return (data.events || [])
-    .filter(e => e.status !== "template")
-    .map(e => ({
-      slug: e.id,
-      label: e.name
-    }));
-}
+  const wrap        = document.getElementById('wrap');
+  const msgBox      = document.getElementById('message');
+  const eventSel    = document.getElementById('eventSel');
+  const reloadBtn   = document.getElementById('reloadBtn');
+  const searchBox   = document.getElementById('searchBox');
+  const searchCount = document.getElementById('searchCount');
 
-  const wrap       = document.getElementById('wrap');
-  const msgBox     = document.getElementById('message');
-  const eventSel   = document.getElementById('eventSel');
-  const reloadBtn  = document.getElementById('reloadBtn');
-  const searchBox  = document.getElementById('searchBox');
-  const searchCount= document.getElementById('searchCount');
-
+  let EVENTS = [];
   let currentSlug = null;
-let EVENTS = [];
-  let sectionsData = [];  // {file, html, element}
+  let sectionsData = []; // { file, html, element }
 
-  // Populate event dropdown
-  function initEventSelect() {
-    eventSel.innerHTML = '';
-    EVENTS.forEach(ev => {
-      const opt = document.createElement('option');
-      opt.value = ev.slug;
-      opt.textContent = ev.label;
-      eventSel.appendChild(opt);
-    });
-    if (currentSlug) eventSel.value = currentSlug;
+  function getParam(name) {
+    return new URLSearchParams(window.location.search).get(name);
+  }
+
+  function setParam(name, value) {
+    const url = new URL(window.location.href);
+    url.searchParams.set(name, value);
+    window.history.replaceState({}, "", url);
   }
 
   function showMessage(text) {
@@ -160,22 +148,53 @@ let EVENTS = [];
   }
 
   async function fetchText(path) {
-    console.log('Fetching text:', path);
-    const res = await fetch(path, { cache:'no-store' });
+    const res = await fetch(path, { cache: 'no-store' });
     if (!res.ok) throw new Error(path + ' → ' + res.status);
     return res.text();
   }
 
   async function fetchJSON(path) {
-    console.log('Fetching JSON:', path);
-    const res = await fetch(path, { cache:'no-store' });
+    const res = await fetch(path, { cache: 'no-store' });
     if (!res.ok) throw new Error(path + ' → ' + res.status);
     return res.json();
   }
 
+  async function loadEventsRegistry() {
+    try {
+      const data = await fetchJSON(EVENTS_REGISTRY_URL);
+      const list = (data.events || [])
+        .filter(e => (e.status || "").toLowerCase() !== "template")
+        .map(e => ({
+          slug: e.id,
+          label: e.name
+        }))
+        .filter(e => e.slug && e.label);
+
+      return list.length ? list : FALLBACK_EVENTS;
+    } catch (e) {
+      console.warn("events.json not available, using fallback list.", e);
+      return FALLBACK_EVENTS;
+    }
+  }
+
+  function initEventSelect() {
+    eventSel.innerHTML = '';
+    EVENTS.forEach(ev => {
+      const opt = document.createElement('option');
+      opt.value = ev.slug;
+      opt.textContent = ev.label;
+      eventSel.appendChild(opt);
+    });
+
+    if (currentSlug) eventSel.value = currentSlug;
+  }
+
   async function loadEvent(slug) {
     clearMessage();
+
+    // Clear sections (leave the searchCount paragraph)
     wrap.querySelectorAll('section.section').forEach(s => s.remove());
+
     searchBox.value = '';
     searchCount.style.display = 'none';
     sectionsData = [];
@@ -188,7 +207,6 @@ let EVENTS = [];
 
     // base: ../f2f-events/<slug>/
     const base = `../f2f-events/${slug}/`;
-    console.log('Loading event:', slug, 'base =', base);
 
     let meta;
     try {
@@ -212,7 +230,6 @@ let EVENTS = [];
       try {
         const html = await fetchText(base + 'html/' + file);
 
-        // Container for the section + controls
         const sec = document.createElement('section');
         sec.className = 'section';
         sec.dataset.file = file;
@@ -227,11 +244,9 @@ let EVENTS = [];
           <div class="preview"></div>
         `;
 
-        // Render the actual HTML markup inside .preview
         const preview = sec.querySelector('.preview');
         preview.innerHTML = html;
 
-        // Wire up Copy HTML button
         const btn = sec.querySelector('[data-copy]');
         btn.addEventListener('click', async () => {
           try {
@@ -246,12 +261,7 @@ let EVENTS = [];
 
         wrap.appendChild(sec);
 
-        // Store data for searching
-        sectionsData.push({
-          file,
-          html,
-          element: sec
-        });
+        sectionsData.push({ file, html, element: sec });
 
       } catch (e) {
         console.error(e);
@@ -262,7 +272,7 @@ let EVENTS = [];
       }
     }
 
-    applySearchFilter(); // ensure search text is applied after load
+    applySearchFilter();
   }
 
   function applySearchFilter() {
@@ -275,7 +285,7 @@ let EVENTS = [];
 
     let visibleCount = 0;
 
-    sectionsData.forEach(({ file, html, element }) => {
+    sectionsData.forEach(({ file, element }) => {
       if (!query) {
         element.style.display = '';
         visibleCount++;
@@ -284,6 +294,7 @@ let EVENTS = [];
 
       const haystack = (file + ' ' + element.textContent).toLowerCase();
       const match = haystack.includes(query);
+
       element.style.display = match ? '' : 'none';
       if (match) visibleCount++;
     });
@@ -296,54 +307,43 @@ let EVENTS = [];
     }
   }
 
-  // --- Wire up controls ---
   reloadBtn.addEventListener('click', () => {
     loadEvent(eventSel.value);
   });
 
   eventSel.addEventListener('change', () => {
-  const slug = eventSel.value;
+    const slug = eventSel.value;
 
-  // Save last event
-  localStorage.setItem("f2f_last_event", slug);
+    localStorage.setItem("f2f_last_event", slug);
+    setParam("event", slug);
 
-  // Update URL (shareable)
-  const url = new URL(window.location.href);
-  url.searchParams.set("event", slug);
-  window.history.replaceState({}, "", url);
-
-  loadEvent(slug);
-});
+    loadEvent(slug);
+  });
 
   searchBox.addEventListener('input', () => {
     applySearchFilter();
   });
 
-// Initial setup & load
-(async () => {
-  try {
+  (async () => {
     EVENTS = await loadEventsRegistry();
 
     if (!EVENTS.length) {
-      showMessage('No events found in f2f-events/events.json.');
+      showMessage('No events configured.');
       return;
     }
 
-    // Use URL param if present, else last used, else first event
-    const urlEvent = new URLSearchParams(window.location.search).get("event");
+    const urlEvent = getParam("event");
     const lastEvent = localStorage.getItem("f2f_last_event");
-
     currentSlug = urlEvent || lastEvent || EVENTS[0].slug;
 
     initEventSelect();
     eventSel.value = currentSlug;
-
     await loadEvent(currentSlug);
-  } catch (e) {
+  })().catch(e => {
     console.error(e);
-    showMessage('Error loading events registry: ' + e.message);
-  }
-})();
+    showMessage('Startup error: ' + e.message);
+  });
+});
 </script>
 </body>
 </html>
