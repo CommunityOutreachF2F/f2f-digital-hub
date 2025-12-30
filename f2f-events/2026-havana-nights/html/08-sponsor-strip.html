@@ -130,16 +130,15 @@
     linear-gradient(180deg, rgba(212,175,55,.08) 0%, rgba(255,255,255,1) 35%);
 }
 
-/* Soft “sheen” at top (very subtle) */
-.sp2-card[data-tier="El Presidente"]::after{
-  content:"";
-  position:absolute;
-  top:-40%;
-  left:-20%;
-  width:140%;
-  height:70%;
-  background:radial-gradient(circle at top, rgba(255,210,122,.22), rgba(255,255,255,0) 60%);
-  pointer-events:none;
+/* Subtle top highlight (no transparency) */
+.sp2-card[data-tier="El Presidente"]{
+  border-width:3px;
+  background:
+    linear-gradient(
+      180deg,
+      #FFF7D6 0%,
+      #FFFFFF 40%
+    );
 }
 
 /* Small badge in top-right of El Presidente cards */
