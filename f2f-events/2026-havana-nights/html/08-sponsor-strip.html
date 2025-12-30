@@ -51,7 +51,7 @@
         position:absolute;left:10px;top:10px;
         background:rgba(0,0,0,.06);border-radius:8px;padding:4px 8px;
         font-size:12px;font-weight:700;color:#1B1F3B;letter-spacing:.2px;
-        pointer-events:none; /* IMPORTANT: don't block clicking */
+        pointer-events:none; /* don't block clicking */
       }
 
       /* Clickable sponsor link (whole card content) */
@@ -100,6 +100,67 @@
         max-height:100px !important;
         margin:6px 0;
       }
+/* ===== Presenting Sponsor treatment (El Presidente) ===== */
+.sp2-tier-label--presenting .sp2-tier-pill{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.sp2-presenting-chip{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:6px 10px;
+  border-radius:999px;
+  background:rgba(212,175,55,.16);
+  border:1px solid rgba(212,175,55,.45);
+  color:#FFD27A;
+  font-weight:800;
+  font-size:12px;
+  line-height:1;
+  letter-spacing:.2px;
+  white-space:nowrap;
+}
+
+/* Premium card feel just for El Presidente */
+.sp2-card[data-tier="El Presidente"]{
+  border-width:3px;
+  background:
+    linear-gradient(180deg, rgba(212,175,55,.08) 0%, rgba(255,255,255,1) 35%);
+}
+
+/* Soft “sheen” at top (very subtle) */
+.sp2-card[data-tier="El Presidente"]::after{
+  content:"";
+  position:absolute;
+  top:-40%;
+  left:-20%;
+  width:140%;
+  height:70%;
+  background:radial-gradient(circle at top, rgba(255,210,122,.22), rgba(255,255,255,0) 60%);
+  pointer-events:none;
+}
+
+/* Small badge in top-right of El Presidente cards */
+.sp2-badge{
+  position:absolute;
+  right:10px;
+  top:10px;
+  padding:4px 8px;
+  border-radius:999px;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.2px;
+  line-height:1;
+  pointer-events:none;
+}
+
+.sp2-badge--presenting{
+  background:rgba(212,175,55,.18);
+  border:1px solid rgba(212,175,55,.5);
+  color:#1B1F3B;
+}
 </style>
 <div class="sp2-wrap"><!-- Title + stripe -->
 <div class="sp2-title-row">
@@ -109,15 +170,20 @@
 <div aria-hidden="true" class="sp2-stripe"> </div>
 <!-- ================= El Presidente ================= -->
 
-<div class="sp2-tier-label">
-<div class="sp2-tier-pill"><span style="color:#C9C8C6">El Presidente</span> Sponsor</div>
+<div class="sp2-tier-label sp2-tier-label--presenting">
+<div class="sp2-tier-pill"><span style="color:#C9C8C6">El Presidente</span> Sponsor <span aria-hidden="true" class="sp2-presenting-chip">Presenting Sponsor</span></div>
 </div>
 
 <div class="sp2-grid" style="margin-bottom:14px">
-<div class="sp2-card" data-tier="El Presidente" title="Family Health Source"><span class="sp2-tier-pill">El Presidente</span> <a aria-label="Visit Family Health Source website (opens in a new tab)" class="sp2-link" href="https://www.myfhs.org/" rel="noopener noreferrer" target="_blank"> <img alt="Family Health Source" class="sp2-logo" loading="lazy" src="https://communityoutreachf2f.github.io/f2f-digital-hub/f2f-sponsor-logos/family-health-source-logo--primary.png" /> </a>
+<div class="sp2-card" data-tier="El Presidente" title="Family Health Source"><span class="sp2-tier-pill">El Presidente</span> <span class="sp2-badge sp2-badge--presenting">Presenting</span> <a aria-label="Visit Family Health Source website (opens in a new tab)" class="sp2-link" href="https://www.myfhs.org/" rel="noopener noreferrer" target="_blank"> <img alt="Family Health Source" class="sp2-logo" loading="lazy" src="https://communityoutreachf2f.github.io/f2f-digital-hub/f2f-sponsor-logos/family-health-source-logo--primary.png" /> </a>
 
 <div class="sp2-name"><a aria-label="Visit Family Health Source website (opens in a new tab)" class="sp2-link" href="https://www.myfhs.org/" rel="noopener noreferrer" target="_blank">Family Health Source</a></div>
 <a aria-label="Visit Family Health Source website (opens in a new tab)" class="sp2-link" href="https://www.myfhs.org/" rel="noopener noreferrer" target="_blank"> </a></div>
+
+<div class="sp2-card" data-tier="El Presidente" title="Foundations Risk Partners"><span class="sp2-tier-pill">El Presidente</span> <span class="sp2-badge sp2-badge--presenting">Presenting</span> <a aria-label="Visit Foundations Risk Partners website (opens in a new tab)" class="sp2-link" href="https://foundationrp.com/" rel="noopener noreferrer" target="_blank"> <img alt="Foundations Risk Partners" class="sp2-logo" loading="lazy" src="https://communityoutreachf2f.github.io/f2f-digital-hub/f2f-sponsor-logos/foundation-risk-partners_logo--primary.png" /> </a>
+
+<div class="sp2-name"><a aria-label="Visit Foundations Risk Partners website (opens in a new tab)" class="sp2-link" href="https://foundationrp.com/" rel="noopener noreferrer" target="_blank">Foundations Risk Partners</a></div>
+<a aria-label="Visit Foundations Risk Partners website (opens in a new tab)" class="sp2-link" href="https://foundationrp.com/" rel="noopener noreferrer" target="_blank"> </a></div>
 </div>
 <!-- ================= Havana Gold ================= -->
 
@@ -130,11 +196,6 @@
 
 <div class="sp2-name"><a aria-label="Visit nsoro Educational Foundation website (opens in a new tab)" class="sp2-link" href="https://nsoro.foundation/" rel="noopener noreferrer" target="_blank">nsoro Educational Foundation</a></div>
 <a aria-label="Visit nsoro Educational Foundation website (opens in a new tab)" class="sp2-link" href="https://nsoro.foundation/" rel="noopener noreferrer" target="_blank"> </a></div>
-
-<div class="sp2-card" data-tier="Havana Gold" title="Foundations Risk Partners"><span class="sp2-tier-pill">Havana Gold</span> <a aria-label="Visit Foundations Risk Partners website (opens in a new tab)" class="sp2-link" href="https://foundationrp.com/" rel="noopener noreferrer" target="_blank"> <img alt="Foundations Risk Partners" class="sp2-logo" loading="lazy" src="https://communityoutreachf2f.github.io/f2f-digital-hub/f2f-sponsor-logos/foundation-risk-partners_logo--primary.png" /> </a>
-
-<div class="sp2-name"><a aria-label="Visit Foundations Risk Partners website (opens in a new tab)" class="sp2-link" href="https://foundationrp.com/" rel="noopener noreferrer" target="_blank">Foundations Risk Partners</a></div>
-<a aria-label="Visit Foundations Risk Partners website (opens in a new tab)" class="sp2-link" href="https://foundationrp.com/" rel="noopener noreferrer" target="_blank"> </a></div>
 
 <div class="sp2-card" data-tier="Havana Gold" title="Volusia County Sheriff’s Office"><span class="sp2-tier-pill">Havana Gold</span> <a aria-label="Visit Volusia County Sheriff's Office website (opens in a new tab)" class="sp2-link" href="https://www.volusiasheriff.gov/" rel="noopener noreferrer" target="_blank"> <img alt="Volusia County Sheriff’s Office" class="sp2-logo" loading="lazy" src="https://communityoutreachf2f.github.io/f2f-digital-hub/f2f-sponsor-logos/vc-sheriffs-department--primary.png" /> </a>
 
@@ -253,6 +314,11 @@
 
 <div class="sp2-name"><a aria-label="Visit AllyHealth website (opens in a new tab)" class="sp2-link" href="https://www.allyhealth.net/" rel="noopener noreferrer" target="_blank">AllyHealth</a></div>
 <a aria-label="Visit AllyHealth website (opens in a new tab)" class="sp2-link" href="https://www.allyhealth.net/" rel="noopener noreferrer" target="_blank"> </a></div>
+
+<div class="sp2-card" data-tier="Caribbean Coral" title="Halifax Health"><span class="sp2-tier-pill">Caribbean Coral</span> <a aria-label="Visit Halifax Health website (opens in a new tab)" class="sp2-link" href="https://halifaxhealth.org/" rel="noopener noreferrer" target="_blank"> <img alt="Halifax Health" class="sp2-logo" loading="lazy" src="https://communityoutreachf2f.github.io/f2f-digital-hub/f2f-sponsor-logos/halifax-health-logo--primary.png" /> </a>
+
+<div class="sp2-name"><a aria-label="Visit Halifax Health website (opens in a new tab)" class="sp2-link" href="https://halifaxhealth.org/" rel="noopener noreferrer" target="_blank">Halifax Health</a></div>
+<a aria-label="Visit Halifax Health website (opens in a new tab)" class="sp2-link" href="https://halifaxhealth.org/" rel="noopener noreferrer" target="_blank"> </a></div>
 </div>
 <!-- Bottom note -->
 
