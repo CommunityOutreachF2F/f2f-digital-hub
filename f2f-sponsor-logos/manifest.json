@@ -1,16 +1,39 @@
 {
   "meta": {
-    "generated": "2025-10-31",
+    "generated": "2025-12-30",
     "base_url": "https://communityoutreachf2f.github.io/f2f-digital-hub/f2f-sponsor-logos/"
   },
   "logos": [
-        {
+    {
       "company": "Family Health Source",
       "event": "2025 Havana Nights",
-      "tier": "El Presidente Sponsor",
+      "tier": "El Presidente Sponsors",
       "tier_rank": 1,
       "filename": "family-health-source-logo--primary.png",
       "url": "https://communityoutreachf2f.github.io/f2f-digital-hub/f2f-sponsor-logos/family-health-source-logo--primary.png",
+      "format": "png",
+      "variant": "primary",
+      "notes": "Consider transparent PNG or SVG."
+    },
+    {
+      "company": "Foundations Risk Partners",
+      "event": "2025 Havana Nights",
+      "tier": "El Presidente Sponsors",
+      "tier_rank": 1,
+      "filename": "foundation-risk-partners_logo--primary.png",
+      "url": "https://communityoutreachf2f.github.io/f2f-digital-hub/f2f-sponsor-logos/foundation-risk-partners_logo--primary.png",
+      "format": "png",
+      "variant": "primary",
+      "notes": "Moved to El Presidente (upgraded sponsorship)."
+    },
+
+    {
+      "company": "nsoro Educational Foundation",
+      "event": "2025 Havana Nights",
+      "tier": "Havana Gold Sponsors",
+      "tier_rank": 2,
+      "filename": "nsoro-foundation-logo--primary.png",
+      "url": "https://communityoutreachf2f.github.io/f2f-digital-hub/f2f-sponsor-logos/nsoro-foundation-logo--primary.png",
       "format": "png",
       "variant": "primary",
       "notes": "Consider transparent PNG or SVG."
@@ -26,17 +49,6 @@
       "variant": "primary",
       "notes": "Consider transparent PNG or SVG."
     },
-        {
-      "company": "SMA Healthcare",
-      "event": "2025 Havana Nights",
-      "tier": "Sunset Orange Sponsors",
-      "tier_rank": 4,
-      "filename": "sma-healthcare-logo--primary.png",
-      "url": "https://communityoutreachf2f.github.io/f2f-digital-hub/f2f-sponsor-logos/sma-healthcare-logo--primary.png",
-      "format": "png",
-      "variant": "primary",
-      "notes": "They had a png yay!"
-    },
     {
       "company": "MBI Direct Mail",
       "event": "2025 Havana Nights",
@@ -48,7 +60,8 @@
       "variant": "primary",
       "notes": "Request transparent PNG or SVG if available."
     },
-       {
+
+    {
       "company": "White Sands Treatment Center",
       "event": "2025 Havana Nights",
       "tier": "Tropical Blue Sponsors",
@@ -70,8 +83,8 @@
       "variant": "primary",
       "notes": "Request transparent PNG or SVG if available."
     },
-      {
-      "company": "The Beacon",
+    {
+      "company": "The West Volusia Beacon",
       "event": "2025 Havana Nights",
       "tier": "Tropical Blue Sponsors",
       "tier_rank": 3,
@@ -79,18 +92,30 @@
       "url": "https://communityoutreachf2f.github.io/f2f-digital-hub/f2f-sponsor-logos/beacon-logo--primary.png",
       "format": "png",
       "variant": "primary",
-      "notes": "Request transparent PNG or SVG if available."
+      "notes": "Consider transparent PNG or SVG if available."
     },
-          {
-      "company": "Rue & Ziffra",
+
+    {
+      "company": "Camelot Custom Construction",
       "event": "2025 Havana Nights",
-      "tier": "Tropical Blue Sponsors",
-      "tier_rank": 3,
-      "filename": "rue-ziffra-logo--primary.svg",
-      "url": "https://communityoutreachf2f.github.io/f2f-digital-hub/f2f-sponsor-logos/rue-ziffra-logo--primary.svg",
-      "format": "svg",
+      "tier": "Sunset Orange Sponsors",
+      "tier_rank": 4,
+      "filename": "camelot-custom-construction-logo--primary.png",
+      "url": "https://communityoutreachf2f.github.io/f2f-digital-hub/f2f-sponsor-logos/camelot-custom-construction-logo--primary.png",
+      "format": "png",
       "variant": "primary",
-      "notes": "Request transparent PNG or SVG if available."
+      "notes": ""
+    },
+    {
+      "company": "SMA Healthcare",
+      "event": "2025 Havana Nights",
+      "tier": "Sunset Orange Sponsors",
+      "tier_rank": 4,
+      "filename": "sma-healthcare-logo--primary.png",
+      "url": "https://communityoutreachf2f.github.io/f2f-digital-hub/f2f-sponsor-logos/sma-healthcare-logo--primary.png",
+      "format": "png",
+      "variant": "primary",
+      "notes": "They had a png yay!"
     },
     {
       "company": "Security Pro",
@@ -103,6 +128,7 @@
       "variant": "primary",
       "notes": "Request transparent PNG or SVG if available."
     },
+
     {
       "company": "ANG Builders",
       "event": "2025 Havana Nights",
@@ -136,7 +162,7 @@
       "variant": "primary",
       "notes": ""
     },
-     {
+    {
       "company": "Quality Quickprint",
       "event": "2025 Havana Nights",
       "tier": "Palm Green Sponsors",
@@ -147,7 +173,8 @@
       "variant": "primary",
       "notes": ""
     },
-       {
+
+    {
       "company": "Obeng Family Dental",
       "event": "2025 Havana Nights",
       "tier": "Caribbean Coral Sponsors",
@@ -156,10 +183,21 @@
       "url": "https://communityoutreachf2f.github.io/f2f-digital-hub/f2f-sponsor-logos/obeng-family-dental-logo--primary.png",
       "format": "png",
       "variant": "primary",
-      "notes": "Grab a better logo if possible this is from their website"
+      "notes": "Grab a better logo if possible; this is from their website."
     },
     {
-      "company": "Jared Meyers (Tom James Suits)",
+      "company": "Ripple Leadership Coaching",
+      "event": "2025 Havana Nights",
+      "tier": "Caribbean Coral Sponsors",
+      "tier_rank": 6,
+      "filename": "ripple-leadership-orange-logo--secondary.png",
+      "url": "https://communityoutreachf2f.github.io/f2f-digital-hub/f2f-sponsor-logos/ripple-leadership-orange-logo--secondary.png",
+      "format": "png",
+      "variant": "secondary",
+      "notes": ""
+    },
+    {
+      "company": "Jared Meyers of Tom James Suits",
       "event": "2025 Havana Nights",
       "tier": "Caribbean Coral Sponsors",
       "tier_rank": 6,
@@ -169,48 +207,59 @@
       "variant": "primary",
       "notes": "Vector (great!)."
     },
-{
-  "company": "Recovery Village",
-  "event": "2025 Havana Nights",
-  "tier": "Caribbean Coral Sponsors",
-  "tier_rank": 6,
-  "filename": "recovery-village--primary.png",
-  "url": "https://communityoutreachf2f.github.io/f2f-digital-hub/f2f-sponsor-logos/recovery-village--primary.png",
-  "format": "png",
-  "variant": "primary",
-  "notes": ""
-},
     {
-      "company": "The Valle Home Group", 
-      "event": "2025 Havana Nights", 
+      "company": "The Recovery Village",
+      "event": "2025 Havana Nights",
       "tier": "Caribbean Coral Sponsors",
-      "tier_rank": 6, 
+      "tier_rank": 6,
+      "filename": "recovery-village--primary.png",
+      "url": "https://communityoutreachf2f.github.io/f2f-digital-hub/f2f-sponsor-logos/recovery-village--primary.png",
+      "format": "png",
+      "variant": "primary",
+      "notes": ""
+    },
+    {
+      "company": "The Valle Home Group",
+      "event": "2025 Havana Nights",
+      "tier": "Caribbean Coral Sponsors",
+      "tier_rank": 6,
+      "filename": "valle-home-group-logo--secondary.png",
+      "url": "https://communityoutreachf2f.github.io/f2f-digital-hub/f2f-sponsor-logos/valle-home-group-logo--secondary.png",
+      "format": "png",
+      "variant": "secondary",
+      "notes": "Using secondary variant on sponsor page."
+    },
+    {
+      "company": "The Valle Home Group",
+      "event": "2025 Havana Nights",
+      "tier": "Caribbean Coral Sponsors",
+      "tier_rank": 6,
       "filename": "valle-home-group-logo--primary.png",
       "url": "https://communityoutreachf2f.github.io/f2f-digital-hub/f2f-sponsor-logos/valle-home-group-logo--primary.png",
-      "variant": "primary", 
       "format": "png",
-      "notes": ""
-    },
-        {
-      "company": "The Valle Home Group", 
-      "event": "2025 Havana Nights", 
-      "tier": "Caribbean Coral Sponsors",
-      "tier_rank": 6, 
-      "filename": "valle-home-group-logo--primary.png",
-      "url": "https://communityoutreachf2f.github.io/f2f-digital-hub/f2f-sponsor-logos/valle-home-group-logo--secondary.png",
-      "variant": "secondary", 
-      "format": "png",
+      "variant": "primary",
       "notes": ""
     },
     {
-      "company": "AllyHealth", 
-      "event": "2025 Havana Nights", 
+      "company": "AllyHealth",
+      "event": "2025 Havana Nights",
       "tier": "Caribbean Coral Sponsors",
-      "tier_rank": 6, 
+      "tier_rank": 6,
       "filename": "allyhealth-dark-logo--primary.png",
       "url": "https://communityoutreachf2f.github.io/f2f-digital-hub/f2f-sponsor-logos/allyhealth-dark-logo--primary.png",
-      "variant": "primary", 
       "format": "png",
+      "variant": "primary",
+      "notes": ""
+    },
+    {
+      "company": "Halifax Health",
+      "event": "2025 Havana Nights",
+      "tier": "Caribbean Coral Sponsors",
+      "tier_rank": 6,
+      "filename": "halifax-health-logo--primary.png",
+      "url": "https://communityoutreachf2f.github.io/f2f-digital-hub/f2f-sponsor-logos/halifax-health-logo--primary.png",
+      "format": "png",
+      "variant": "primary",
       "notes": ""
     }
   ]
