@@ -1,7 +1,6 @@
 {
   "event_name": "Virtual Giving Tree",
   "event_date": "December 2025",
-  "order": [
-    "index.html"
-  ]
+  "base_path": "f2f-events/virtual-giving-tree/",
+  "order": ["index.html"]
 }
