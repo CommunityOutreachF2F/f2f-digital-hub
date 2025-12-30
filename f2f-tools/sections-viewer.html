@@ -228,7 +228,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
     for (const file of order) {
       try {
-        const html = await fetchText(base + 'html/' + file);
+        const basePath = meta.base_path ? ("../" + meta.base_path) : (base + "html/");
+        const html = await fetchText(basePath + file);
 
         const sec = document.createElement('section');
         sec.className = 'section';
@@ -239,7 +240,7 @@ window.addEventListener('DOMContentLoaded', () => {
             <strong>${file}</strong>
             <span class="pill">HTML section</span>
             <button type="button" data-copy>Copy HTML</button>
-            <a href="${base + 'html/' + file}" target="_blank" rel="noopener">Open file</a>
+            <a href="${basePath + file}" target="_blank" rel="noopener">Open file</a>
           </div>
           <div class="preview"></div>
         `;
