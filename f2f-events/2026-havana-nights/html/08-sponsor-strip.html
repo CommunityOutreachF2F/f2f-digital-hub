@@ -113,10 +113,12 @@
   gap:6px;
   padding:6px 10px;
   border-radius:999px;
-  background:rgba(212,175,55,.16);
-  border:1px solid rgba(212,175,55,.45);
-  color:#FFD27A;
-  font-weight:800;
+
+  background:#D4AF37;        /* SOLID gold */
+  border:1px solid #B8922E;  /* slightly deeper gold edge */
+  color:#1B1F3B;             /* navy text reads premium */
+
+  font-weight:900;
   font-size:12px;
   line-height:1;
   letter-spacing:.2px;
@@ -126,12 +128,13 @@
 /* Premium card surface for El Presidente (Presenting Sponsors) */
 .sp2-card[data-tier="El Presidente"]{
   border-width:3px;
-  background:
-    linear-gradient(
-      180deg,
-      rgba(255, 247, 214, .75) 0%,
-      #FFFFFF 42%
-    );
+
+  background:linear-gradient(
+    180deg,
+    #FFF4D1 0%,   /* SOLID cream-gold highlight */
+    #FFFFFF 42%
+  );
+
   box-shadow:
     0 6px 14px rgba(0,0,0,.06),
     inset 0 1px 0 rgba(255,255,255,.85);
@@ -152,8 +155,8 @@
 }
 
 .sp2-badge--presenting{
-  background:rgba(212,175,55,.24);
-  border:1px solid rgba(212,175,55,.65);
+  background:#FFF4D1;        /* SOLID cream */
+  border:1px solid #D4AF37;  /* gold edge */
   color:#1B1F3B;
   box-shadow:0 4px 10px rgba(0,0,0,.08);
 }
