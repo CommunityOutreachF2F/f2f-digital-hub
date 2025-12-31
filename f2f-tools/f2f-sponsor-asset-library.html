@@ -55,15 +55,15 @@
 <script>
 window.addEventListener('DOMContentLoaded', () => {
   // ---- Tier colors & helpers ----
-  const TIER_STYLES = {
-    "El Presidente Sponsor":    { bg: "#222222" },   // deep neutral
-    "Havana Gold Sponsors":     { bg: "#E0B400" },   // gold
-    "Tropical Blue Sponsors":   { bg: "#48B1D8" },   // tropical blue
-    "Sunset Orange Sponsors":   { bg: "#FF7A45" },   // orange
-    "Palm Green Sponsors":      { bg: "#30C487" },   // palm green
-    "Caribbean Coral Sponsors": { bg: "#FF6F61" }    // coral
-    "Nonprofit Community Partners": { bg: "#7C5CFF" }    // Violet
-  };
+const TIER_STYLES = {
+  "El Presidente Sponsors":    { bg: "#C9C8C6" }, // platinum/silver
+  "Havana Gold Sponsors":      { bg: "#D4AF37" }, // gold
+  "Tropical Blue Sponsors":    { bg: "#1CA9C9" }, // tropical blue
+  "Sunset Orange Sponsors":    { bg: "#FF7F6B" }, // orange
+  "Palm Green Sponsors":       { bg: "#30C487" }, // palm green
+  "Caribbean Coral Sponsors":  { bg: "#FF8A7A" }, // coral
+  "Nonprofit Community Partners": { bg: "#7C5CFF" } // violet
+};
 
   function pickTextColor(hex) {
     const c = hex.replace('#','');
