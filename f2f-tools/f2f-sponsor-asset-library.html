@@ -249,7 +249,7 @@ async function loadManifest() {
     } catch (e) {
       grid.innerHTML = '';
       empty.hidden = false;
-      empty.textContent = 'Could not load ../f2f-sponsor-logos/manifest.json — add the file, then refresh.';
+      empty.textContent = 'Could not load manifest.json — check the URL and JSON validity, then refresh.';
       console.error(e);
     }
   })();
