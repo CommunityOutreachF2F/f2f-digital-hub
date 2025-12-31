@@ -262,5 +262,38 @@
       "variant": "primary",
       "notes": ""
     }
+{
+  "company": "Volusia Recovery Alliance",
+  "event": "2025 Havana Nights",
+  "tier": "Nonprofit Community Partner Sponsors",
+  "tier_rank": 7,
+  "filename": "vra-logo--primary.jpg",
+  "url": "https://communityoutreachf2f.github.io/f2f-digital-hub/f2f-sponsor-logos/vra-logo--primary.jpg",
+  "format": "jpg",
+  "variant": "primary",
+  "notes": ""
+},
+{
+  "company": "Peer Support Coalition",
+  "event": "2025 Havana Nights",
+  "tier": "Nonprofit Community Partner Sponsors",
+  "tier_rank": 7,
+  "filename": "peer-support-coalition-florida-logo--primary.png",
+  "url": "https://communityoutreachf2f.github.io/f2f-digital-hub/f2f-sponsor-logos/peer-support-coalition-florida-logo--primary.png",
+  "format": "png",
+  "variant": "primary",
+  "notes": ""
+},
+{
+  "company": "The Healthy Start Coalition of Flagler & Volusia Counties, Inc.",
+  "event": "2025 Havana Nights",
+  "tier": "Nonprofit Community Partner Sponsors",
+  "tier_rank": 7,
+  "filename": "hsc-logo--primary.png",
+  "url": "https://communityoutreachf2f.github.io/f2f-digital-hub/f2f-sponsor-logos/hsc-logo--primary.png",
+  "format": "png",
+  "variant": "primary",
+  "notes": ""
+}
   ]
 }
